@@ -194,3 +194,10 @@ alter table mama.tbl_SaleProduct
   references mama.tbl_Product (productId)
   on update restrict
   on delete restrict;
+
+alter table mama.tbl_SaleProduct
+  add constraint fk_tbl_SaleProduct_ProductCouponId
+  foreign key (productId, couponId)
+  references mama.tbl_ProductCoupon (productId, couponId)
+  on update restrict
+  on delete restrict;
