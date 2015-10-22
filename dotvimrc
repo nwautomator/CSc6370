@@ -1,0 +1,11 @@
+syntax on
+set tabstop=4
+set number
+set autoindent
+set smartindent
+set shiftwidth=4
+set showmatch
+set ruler
+set backspace=2
+set nocompatible
+set expandtab
