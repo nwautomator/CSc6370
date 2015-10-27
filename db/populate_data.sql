@@ -1,4 +1,16 @@
 -------------------------------------------------------------------------------------*
+-- Start by deleting all data before running to avoid duplicates.
+-------------------------------------------------------------------------------------*
+delete from mama.tbl_SaleProduct;
+delete from mama.tbl_Sale;
+delete from mama.tbl_ProductCoupon;
+delete from mama.tbl_Coupon;
+delete from mama.tbl_Product;
+delete from mama.tbl_Customer;
+delete from mama.tbl_Employee;
+delete from mama.tbl_Category_lu;
+
+-------------------------------------------------------------------------------------*
 -- Create procedure to add categories to tbl_Category_lu.
 -- Populate with initial records.
 -------------------------------------------------------------------------------------*
@@ -21,6 +33,7 @@ call mama.CategoryAdd('Home Decor');
 call mama.CategoryAdd('General');
 call mama.CategoryAdd('Seasonal');
 call mama.CategoryAdd('Toys');
+call mama.CategoryAdd('Tobacco');
 
 -------------------------------------------------------------------------------------*
 -- Create procedure to add customers to tbl_Customer.
@@ -111,3 +124,5 @@ call mama.ProductAdd( 7, 'Pumpkin', 13.99, 8 );
 call mama.ProductAdd( 8, 'Cap Gun', 5.99, 5 );
 call mama.ProductAdd( 8, 'Doll', 9.99, 5 );
 call mama.ProductAdd( 8, 'Yo-Yo', 5.99, 5 );
+call mama.ProductAdd( 9, 'Dip', 6.99, 10 );
+call mama.ProductAdd( 9, 'Cigars', 9.99, 10 );

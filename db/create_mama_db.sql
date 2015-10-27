@@ -1,6 +1,7 @@
 --Create database Mama; schema and objects
 
 --*****CREATE SCHEMA*****--
+drop database if exists mama;
 create schema mama;
 grant all on mama.* to 'mama_tester'@'localhost' identified by 'test1234';
 
