@@ -109,8 +109,36 @@ create table mama.tbl_SaleProduct(
 
 --*****CREATE VIEWS*****--
 -------------------------------------------------------------------------------------*
--- Sales_Summary
+-- CustomerSales_v
 -------------------------------------------------------------------------------------*
+create or replace view mama.CustomerSales_v as
+  select s.saleId,
+         s.saleTotal,
+         s.saleDate,
+         c.customerId,
+         c.nameFirst,
+         c.nameLast
+    from mama.tbl_Sale s
+    join mama.tbl_Customer c
+      on c.customerId = s.customerId;
+
+-------------------------------------------------------------------------------------*
+-- ProductSales_v
+-------------------------------------------------------------------------------------*
+create or replace view mama.ProductSales_v as
+  select sp.saleId,
+         sp.productId,
+         sp.amount,
+         ( sp.amount * p.price ) as productTotal,
+         s.customerId,
+         s.saleDate,
+         p.name,
+         p.price
+    from mama.tbl_SaleProduct sp
+    join mama.tbl_Sale s
+      on s.saleId = sp.saleId
+    join mama.tbl_Product p
+      on p.productId = sp.productId;
 
 --*****CREATE INDEXES*****--
 -------------------------------------------------------------------------------------*
