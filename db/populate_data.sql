@@ -1,6 +1,6 @@
--------------------------------------------------------------------------------------*
--- Start by deleting all data before running to avoid duplicates.
--------------------------------------------------------------------------------------*
+-- -----------------------------------------------------------------------------------*
+--  Start by deleting all data before running to avoid duplicates.
+-- -----------------------------------------------------------------------------------*
 delete from mama.tbl_SaleProduct;
 delete from mama.tbl_Sale;
 delete from mama.tbl_ProductCoupon;
@@ -10,10 +10,10 @@ delete from mama.tbl_Customer;
 delete from mama.tbl_Employee;
 delete from mama.tbl_Category_lu;
 
--------------------------------------------------------------------------------------*
--- Create procedure to add categories to tbl_Category_lu.
--- Populate with initial records.
--------------------------------------------------------------------------------------*
+-- -----------------------------------------------------------------------------------*
+--  Create procedure to add categories to tbl_Category_lu.
+--  Populate with initial records.
+-- -----------------------------------------------------------------------------------*
 drop procedure if exists mama.CategoryAdd;
 delimiter $$
 create procedure mama.CategoryAdd(
@@ -37,10 +37,10 @@ call mama.CategoryAdd('Seasonal');
 call mama.CategoryAdd('Toys');
 call mama.CategoryAdd('Tobacco');
 
--------------------------------------------------------------------------------------*
--- Create procedure to add customers to tbl_Customer.
--- Populate with initial records.
--------------------------------------------------------------------------------------*
+-- -----------------------------------------------------------------------------------*
+--  Create procedure to add customers to tbl_Customer.
+--  Populate with initial records.
+-- -----------------------------------------------------------------------------------*
 drop procedure if exists mama.CustomerAdd;
 delimiter $$
 create procedure mama.CustomerAdd(
@@ -69,10 +69,10 @@ call mama.CustomerAdd( 'Anna', 'Marie', '888-888-9626', 'rogue@xmen.com' );
 call mama.CustomerAdd( 'Remy', 'LeBeau', '999-999-9626', 'gambit@xmen.com' );
 call mama.CustomerAdd( 'Logan', 'Howlett', '000-000-9626', 'wolverine@xmen.com' );
 
--------------------------------------------------------------------------------------*
--- Create procedure to add employees to tbl_Employee.
--- Populate with initial records.
--------------------------------------------------------------------------------------*
+-- -----------------------------------------------------------------------------------*
+--  Create procedure to add employees to tbl_Employee.
+--  Populate with initial records.
+-- -----------------------------------------------------------------------------------*
 drop procedure if exists mama.EmployeeAdd;
 delimiter $$
 create procedure mama.EmployeeAdd(
@@ -97,10 +97,10 @@ call mama.EmployeeAdd( 'blai', 'password', 'Brandon', 'Lai', 'Y');
 call mama.EmployeeAdd( 'ggerst', 'password', 'Rhett', 'Gerst', 'Y');
 call mama.EmployeeAdd( 'sluong', 'password', 'Seyana', 'Luong', 'Y');
 
--------------------------------------------------------------------------------------*
--- Create procedure to add products to tbl_Product.
--- Populate with initial records.
--------------------------------------------------------------------------------------*
+-- -----------------------------------------------------------------------------------*
+--  Create procedure to add products to tbl_Product.
+--  Populate with initial records.
+-- -----------------------------------------------------------------------------------*
 drop procedure if exists mama.ProductAdd;
 delimiter $$
 create procedure mama.ProductAdd(
