@@ -15,6 +15,7 @@ delete from mama.tbl_Category_lu;
 -- Populate with initial records.
 -------------------------------------------------------------------------------------*
 drop procedure if exists mama.CategoryAdd;
+delimiter $$
 create procedure mama.CategoryAdd(
   in name_in  varchar (30)
   )
@@ -23,7 +24,8 @@ begin
   insert into mama.tbl_Category_lu( name )
        values ( name_in );
 
-end;
+end$$
+delimiter ;
 
 call mama.CategoryAdd('Food and Beverage');
 call mama.CategoryAdd('Medicine');
@@ -40,6 +42,7 @@ call mama.CategoryAdd('Tobacco');
 -- Populate with initial records.
 -------------------------------------------------------------------------------------*
 drop procedure if exists mama.CustomerAdd;
+delimiter $$
 create procedure mama.CustomerAdd(
   in nameFirst_in      varchar(30),
   in nameLast_in       varchar(30),
@@ -51,7 +54,9 @@ begin
   insert into mama.tbl_Customer( nameFirst, nameLast, phoneNumber, email, createdDate )
        values ( nameFirst_in, nameLast_in, phoneNumber_in, email_in, curdate() );
 
-end;
+end$$
+
+delimiter ;
 
 call mama.CustomerAdd( 'Charles', 'Xavier', '111-111-9626', 'professorx@xmen.com' );
 call mama.CustomerAdd( 'Scott', 'Summers', '222-222-9626', 'cyclops@xmen.com' );
@@ -69,6 +74,7 @@ call mama.CustomerAdd( 'Logan', 'Howlett', '000-000-9626', 'wolverine@xmen.com' 
 -- Populate with initial records.
 -------------------------------------------------------------------------------------*
 drop procedure if exists mama.EmployeeAdd;
+delimiter $$
 create procedure mama.EmployeeAdd(
   in logonName_in    varchar (15),
   in password_in     varchar (15),
@@ -81,7 +87,9 @@ begin
   insert into mama.tbl_Employee( logonName, password, nameFirst, nameLast, hireDate, admin )
        values ( logonName_in, password_in, nameFirst_in, nameLast_in, curdate(), admin_in );
 
-end;
+end$$
+
+delimiter ;
 
 call mama.EmployeeAdd( 'mwoodie', 'password', 'Michael', 'Woodie', 'Y');
 call mama.EmployeeAdd( 'cfreas', 'password', 'Chris', 'Freas', 'Y');
@@ -94,6 +102,7 @@ call mama.EmployeeAdd( 'sluong', 'password', 'Seyana', 'Luong', 'Y');
 -- Populate with initial records.
 -------------------------------------------------------------------------------------*
 drop procedure if exists mama.ProductAdd;
+delimiter $$
 create procedure mama.ProductAdd(
   in categoryId_in       int     (9),
   in name_in             varchar (30),
@@ -104,7 +113,9 @@ begin
 
   insert into mama.tbl_Product( categoryId, name, price, inventoryAmount, lastStockDate )
        values ( categoryId_in, name_in, price_in, inventoryAmount_in, curdate() );
-end;
+end$$
+
+delimiter ;
 
 call mama.ProductAdd( 1, 'Beer', 11.99, 15 );
 call mama.ProductAdd( 1, 'Bread', 4.99, 15 );
