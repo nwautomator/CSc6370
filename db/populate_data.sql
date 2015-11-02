@@ -77,7 +77,7 @@ drop procedure if exists mama.EmployeeAdd;
 delimiter $$
 create procedure mama.EmployeeAdd(
   in logonName_in    varchar (15),
-  in password_in     varchar (15),
+  in password_in     varchar (255),
   in nameFirst_in    varchar (30),
   in nameLast_in     varchar (30),
   in admin_in        varchar (1)
@@ -91,11 +91,11 @@ end$$
 
 delimiter ;
 
-call mama.EmployeeAdd( 'mwoodie', 'password', 'Michael', 'Woodie', 'Y');
-call mama.EmployeeAdd( 'cfreas', 'password', 'Chris', 'Freas', 'Y');
-call mama.EmployeeAdd( 'blai', 'password', 'Brandon', 'Lai', 'Y');
-call mama.EmployeeAdd( 'ggerst', 'password', 'Rhett', 'Gerst', 'Y');
-call mama.EmployeeAdd( 'sluong', 'password', 'Seyana', 'Luong', 'Y');
+call mama.EmployeeAdd( 'mwoodie', '5f4dcc3b5aa765d61d8327deb882cf99', 'Michael', 'Woodie', 'Y');
+call mama.EmployeeAdd( 'cfreas', '5f4dcc3b5aa765d61d8327deb882cf99', 'Chris', 'Freas', 'Y');
+call mama.EmployeeAdd( 'blai', '5f4dcc3b5aa765d61d8327deb882cf99', 'Brandon', 'Lai', 'Y');
+call mama.EmployeeAdd( 'ggerst', '5f4dcc3b5aa765d61d8327deb882cf99', 'Rhett', 'Gerst', 'Y');
+call mama.EmployeeAdd( 'sluong', '5f4dcc3b5aa765d61d8327deb882cf99', 'Seyana', 'Luong', 'Y');
 
 -- -----------------------------------------------------------------------------------*
 --  Create procedure to add products to tbl_Product.

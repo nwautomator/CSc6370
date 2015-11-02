@@ -48,7 +48,7 @@ create table mama.tbl_Customer(
 create table mama.tbl_Employee(
   employeeId         int       (9)  auto_increment   not null,
   logonName          varchar  (15)                   not null,
-  password           varchar  (15)                   not null,
+  password           varchar  (255)                  not null,
   nameFirst          varchar  (30)                   not null,
   nameLast           varchar  (30)                   not null,
   hireDate           date                            not null,
