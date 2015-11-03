@@ -73,7 +73,7 @@ function activeClass($requestUri)
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					  </button>
-						<a style="color: green" class="navbar-brand">Mama G's Admin:</a>
+						<a style="color: #ccff99" class="navbar-brand">Mama G's Admin:</a>
 					</div>
 					<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
