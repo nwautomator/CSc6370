@@ -55,13 +55,14 @@
 ?>
 <html>
 <head>
-<title>Change Password</title>
+<title>Change Passwod</title>
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
 </head>
 <body>
+	 </br></br></br></br></br>
 <center>
 <h2>Change Password for <?php print "$fname $lname"; ?></h2></br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="login">
