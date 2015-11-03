@@ -4,6 +4,7 @@
 drop database if exists mama;
 create schema mama;
 grant all on mama.* to 'mama_tester'@'localhost' identified by 'test1234';
+grant all on mama.* to 'mama_tester'@'127.0.0.1' identified by 'test1234';
 
 -- *****CREATE TABLES*****--
 -- -----------------------------------------------------------------------------------*
