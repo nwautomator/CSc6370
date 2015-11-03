@@ -23,6 +23,7 @@
 <html>
 <head>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
@@ -30,17 +31,23 @@
 
 <title>Log in to Mama G's Customer Loyalty Tracker</title>
 <body>
+<div class="container">
+<div class="col-md-4 col-md-offset-4 material-animated-card">
 <center>
-<h3>Login:</h3><br/><br/>
+<h3>Login:</h3>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="login">
-<table>
-<tr><td>Username:</td></tr>
-<tr><td><input name="username" type="text" class="form-control" id="username"/></td></tr>
-<tr><td>Password:</td></tr>
-<tr><td><input name="password" type="password" class="form-control" id="password"/></td></tr>
-</table></br>
-<input type="submit" class="btn btn-lg btn-primary" value="Login">
+	<div class="form-group">
+		<label for="username">Username:</label>
+		<input name="username" type="text" class="form-control" id="username" placeholder="sjobs"/>
+	</div>
+	<div class="form-group">
+		<label for="password">Password:</label>
+		<input name="password" type="password" class="form-control" id="password" placeholder="crazy111"/>
+	</div>
+	<input type="submit" class="btn btn-lg btn-primary" value="Login" style="width: 100%">
 </form>
 </center>
+</div>
+</div>
 </body>
 </html>

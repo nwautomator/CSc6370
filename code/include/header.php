@@ -42,6 +42,12 @@ function activeClass($requestUri)
 	<script src="js/bootstrap-dropdown.js"></script>
 	<script src="js/jquery-1.7.1.min.js"></script>
 
+	<style type="text/css">
+		body > .container {
+			padding-top: 50px;
+		}
+	</style>
+
 </head>
 <body>
 
