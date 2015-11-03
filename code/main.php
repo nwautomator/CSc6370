@@ -11,16 +11,17 @@
 <head>
 <title>Mama G's Main Page</title>
     <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
 </head>
 <body>
-<br/>
-<br/>
+<div class="container">
+<div class="col-md-10 col-md-offset-1 material-animated-card">
 <center>
-<h4>Last 10 Sales Summary:</h4><br/>
-<table border="1" cellpadding="10">
+<h4>Last 10 Sales Summary:</h4>
+<table class="table">
 <tr><th>Customer</th><th>Product Name</th><th>Purchase Date</th></tr>
 <?php
 	// test for an empty table  
@@ -46,7 +47,8 @@
 ?>
 </table>
 </center>
-
+</div>
+</div>
 <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
