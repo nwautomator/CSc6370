@@ -137,3 +137,135 @@ call mama.ProductAdd( 8, 'Doll', 9.99, 5 );
 call mama.ProductAdd( 8, 'Yo-Yo', 5.99, 5 );
 call mama.ProductAdd( 9, 'Dip', 6.99, 10 );
 call mama.ProductAdd( 9, 'Cigars', 9.99, 10 );
+
+-- -----------------------------------------------------------------------------------*
+--  Create procedure to add sales to tbl_Sale.
+-- -----------------------------------------------------------------------------------*
+drop procedure if exists mama.SaleAdd;
+delimiter $$
+create procedure mama.SaleAdd(
+  in cashierId_in   int (9),
+  in customerId_in  int (9),
+  in day_in         int (9)
+  )
+begin
+	
+  insert into mama.tbl_Sale( cashierId, customerId, saleTotal, saleDate )
+       values ( cashierId_in, customerId_in, 0.00, curdate() - interval day_in day);
+end$$
+delimiter ;
+
+-- -----------------------------------------------------------------------------------*
+--  Create procedure to update saleTotal on tbl_Sale.
+-- -----------------------------------------------------------------------------------*
+drop procedure if exists mama.SaleUpdateSaleTotal;
+delimiter $$
+create procedure mama.SaleUpdateSaleTotal(
+  in saleId_in   int (9)
+  )
+begin
+	declare mtotal decimal(9,2);
+	
+	select sum(p.price * sp.amount) as total
+	  into mtotal
+	  from mama.tbl_SaleProduct sp
+	  join mama.tbl_Product p
+	    on p.productId = sp.productId
+	 where sp.saleId = saleId_in;
+	 
+	update mama.tbl_Sale
+	   set saleTotal = mtotal
+	 where saleId = saleId_in;
+	
+end$$
+delimiter ;
+
+-- -----------------------------------------------------------------------------------*
+--  Create procedure to add product purchases to tbl_SaleProduct.
+-- -----------------------------------------------------------------------------------*
+drop procedure if exists mama.SaleProductAdd;
+delimiter $$
+create procedure mama.SaleProductAdd(
+  in saleId_in     int (9),
+  in productId_in  int (9),
+  in amount_in     int (9)
+  )
+begin
+	
+  insert into mama.tbl_SaleProduct( saleId, productId, amount )
+       values ( saleId_in, productId_in, amount_in );
+end$$
+delimiter ;
+
+-- -----------------------------------------------------------------------------------*
+--  Populate tbl_Sale and tbl_SaleProduct
+-- -----------------------------------------------------------------------------------*
+call mama.SaleAdd( 1,1, 60);
+call mama.SaleProductAdd( 1,8,1);
+call mama.SaleProductAdd( 1,5,3);
+call mama.SaleProductAdd( 1,2,2);
+call mama.SaleUpdateSaleTotal(1);
+
+call mama.SaleAdd( 1,2, 5);
+call mama.SaleProductAdd( 2,1,1);
+call mama.SaleProductAdd( 2,2,2);
+call mama.SaleProductAdd( 2,4,2);
+call mama.SaleUpdateSaleTotal(2);
+
+call mama.SaleAdd( 1,3, 94);
+call mama.SaleProductAdd( 3,6,1);
+call mama.SaleUpdateSaleTotal(3);
+
+call mama.SaleAdd( 1,4, 7);
+call mama.SaleProductAdd( 4,8,1);
+call mama.SaleProductAdd( 4,10,2);
+call mama.SaleUpdateSaleTotal(4);
+
+call mama.SaleAdd( 2,5, 14);
+call mama.SaleProductAdd( 5,8,1);
+call mama.SaleProductAdd( 5,10,2);
+call mama.SaleProductAdd( 5,11,1);
+call mama.SaleUpdateSaleTotal(5);
+
+call mama.SaleAdd( 2,6, 6);
+call mama.SaleProductAdd( 6,8,1);
+call mama.SaleProductAdd( 6,10,1);
+call mama.SaleProductAdd( 6,1,2);
+call mama.SaleProductAdd( 6,12,1);
+call mama.SaleProductAdd( 6,5,2);
+call mama.SaleUpdateSaleTotal(6);
+
+call mama.SaleAdd( 3,1, 3);
+call mama.SaleProductAdd( 7,13,1);
+call mama.SaleProductAdd( 7,9,3);
+call mama.SaleProductAdd( 7,7,2);
+call mama.SaleUpdateSaleTotal(7);
+
+call mama.SaleAdd( 5,2,14);
+call mama.SaleProductAdd( 8,20,1);
+call mama.SaleUpdateSaleTotal(8);
+
+call mama.SaleAdd( 5,7, 67);
+call mama.SaleProductAdd( 9,20,1);
+call mama.SaleUpdateSaleTotal(9);
+
+call mama.SaleAdd( 5,8, 2);
+call mama.SaleProductAdd( 10,17,2);
+call mama.SaleProductAdd( 10,16,1);
+call mama.SaleProductAdd( 10,13,3);
+call mama.SaleUpdateSaleTotal(10);
+
+call mama.SaleAdd( 5,9, 22);
+call mama.SaleProductAdd( 11,18,2);
+call mama.SaleProductAdd( 11,6,1);
+call mama.SaleProductAdd( 11,2,3);
+call mama.SaleUpdateSaleTotal(11);
+
+call mama.SaleAdd( 5,10, 4);
+call mama.SaleProductAdd( 12,8,1);
+call mama.SaleProductAdd( 12,6,1);
+call mama.SaleProductAdd( 12,2,3);
+call mama.SaleProductAdd( 12,16,3);
+call mama.SaleProductAdd( 12,7,1);
+call mama.SaleProductAdd( 12,3,1);
+call mama.SaleUpdateSaleTotal(12);

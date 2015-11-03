@@ -123,6 +123,36 @@ create or replace view mama.CustomerSales_v as
     from mama.tbl_Sale s
     join mama.tbl_Customer c
       on c.customerId = s.customerId;
+	 
+-- -----------------------------------------------------------------------------------*
+--  CustomerLastVisit_v
+-- -----------------------------------------------------------------------------------*
+create or replace view mama.CustomerLastVisit_v as
+  select s.saleId,
+         s.customerId,
+         c.nameFirst,
+         c.nameLast,
+         max(s.saleDate)
+    from mama.tbl_Sale s
+    join mama.tbl_Customer c
+      on c.customerId = s.customerId
+group by s.saleId,
+         s.customerId,
+         c.nameFirst,
+         c.nameLast;
+
+-- -----------------------------------------------------------------------------------*
+--  ProductPurchaseTotals_v
+-- -----------------------------------------------------------------------------------*
+create or replace view mama.ProductPurchaseTotals_v as
+  select sp.productId,
+         p.name,
+         count(sp.productId)
+    from mama.tbl_SaleProduct sp
+    join mama.tbl_Product p
+      on p.productId = sp.productId
+group by sp.productId,
+         p.name;
 
 -- -----------------------------------------------------------------------------------*
 --  ProductSales_v
