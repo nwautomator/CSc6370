@@ -1,6 +1,7 @@
 # README #
 
 This is the CSc4370/6370 Project 1 Git repository. The members of this project are:
+
 * Chris Freas (cfreas@cs.gsu.edu)
 * Rett Gerst (ggerst1@student.gsu.edu)
 * Brandon Lai (blai1@student.gsu.edu)
