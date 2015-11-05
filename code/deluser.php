@@ -32,15 +32,18 @@
 ?>
 <html>
 <head>
-<title>Delete a user from Mama G's</title>
+<title>Delete a Mama G's User</title>
     <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+<div class="col-md-10 col-md-offset-1 material-animated-card">
 <center>
-<h2>Delete a user from Mama G's</h2></br>
+<h3>Delete a Mama G's User</h3></br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="deleteuser">
 <select name="deleteuser">
 <option value="00">Select user</option></br>
@@ -55,8 +58,9 @@
 </select><br/><br/>
 <input class="btn btn-primary" type="submit" value="Delete User">
 </form>
-Note:<br/>
-Deleting a user is permanant!
+<p style="font-weight: bold; text-align: center">
+Note: Deleting a user is permanant!
+</p>
 </center>
 
 <!-- Bootstrap core JavaScript

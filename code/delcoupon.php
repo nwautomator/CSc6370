@@ -27,15 +27,18 @@
 ?>
 <html>
 <head>
-<title>Delete A Coupon From Mama G's</title>
+<title>Delete A Mama G's Coupon</title>
     <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+<div class="col-md-10 col-md-offset-1 material-animated-card">
 <center>
-<h2>Delete A Coupon From Mama G's</h2></br>
+<h3>Delete A Mama G's Coupon</h3></br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="deletecoupon">
 <select name="deletecoupon">
 <option value="00">Select Coupon</option></br>
@@ -61,9 +64,11 @@
 </select><br/><br/>
 <input class="btn btn-primary" type="submit" value="Delete Coupon">
 </form>
-Note:<br/>
-Deleting a coupon is permanant!
+<br/>
+<p style="color: red">Note: Deleting a coupon is permanant!</p>
 </center>
+</div>
+</div>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->

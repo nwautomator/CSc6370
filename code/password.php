@@ -57,26 +57,32 @@
 <head>
 <title>Change Passwod</title>
     <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
 </head>
 <body>
-	 </br></br></br></br></br>
+<div class="container">
+<div class="col-md-10 col-md-offset-1 material-animated-card">
 <center>
-<h2>Change Password for <?php print "$fname $lname"; ?></h2></br>
+<h3>Change Password for <?php print "$fname $lname"; ?></h3></br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="login">
-<table>
+<table class="table-condensed">
 <tr><td>Old Password:</td><td><input class="form-control" name="oldpassword" type="password" id="oldpassword"/></td></tr>
 <tr><td>New Password:</td><td><input class="form-control" name="newpassword" type="password" id="newpassword"/></td></tr>
 <tr><td>Confirm new password:</td><td><input class="form-control" name="confirmpassword" type="password" id="confirmpassword"/></td></tr>
 </table><br/></br>
 <input class="btn btn-primary" type="submit" value="Change Password">
 <input class="btn btn-primary" type="reset" value="Clear Entry"><br/><br/>
+<p style="font-weight: bold; text-align: left">
 Guidelines:<br/>
 * Passwords must be at least 8 characters and must contain at least one
 uppercase character, one lowercase character, and one number
+</p>
 </center>
+</div>
+</div>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->

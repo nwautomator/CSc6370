@@ -97,13 +97,16 @@
 <head>
 <title>Edit existing Mama G's user</title>
     <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+<div class="col-md-10 col-md-offset-1 material-animated-card">
 <center>
-<h2>Edit existing Mama G's user</h2></br>
+<h3>Edit existing Mama G's user</h3></br>
 <?php
    //query to fill the select dropdown
    $select_query = "SELECT * FROM tbl_Employee ORDER BY nameLast";
@@ -127,7 +130,7 @@
 </select><br/><br/>
 </form>
 <form method="post">
-<table>
+<table class="table-condensed">
 <tr><td>First name:</td><td><input class="form-control"  name="firstname" type="text" id="firstname" <?php if(isset($_POST['selectuser']) ) { echo 'value="' . $first .'"'; }?>/></td></tr>
 <tr><td>Last name:</td><td><input class="form-control"  name="lastname" type="text" id="lastname" <?php if(isset($_POST['selectuser']) ) { echo 'value="' . $last . '"';}?>/></td></tr>
 <tr><td>Logon Username:</td><td><input class="form-control"  name="logonName" type="text" id="logonName" <?php if(isset($_POST['selectuser']) ) { echo 'value="' . $logonName . '"';}?>/></td></tr>
@@ -151,13 +154,17 @@
 <input class="btn btn-primary" type="submit" name="edituser" value="Edit User">
 <input class="btn btn-primary" type="reset" value="Clear Entry"><br/><br/>
 </form>
+<p style="font-weight: bold; text-align: left">
 Guidelines:<br/>
 * First name must begin with a capital letter and be alphanumeric only<br/>
 * Last name must begin with a capital letter and be alphanumeric only<br/>
 * Email address can be in the form bob@company.com or bob.smith@company.com<br/>
 * Passwords must be at least 8 characters and must contain at least one
 uppercase character, one lowercase character, and one number<br/><br/><br/>
+</p>
 </center>
+</div>
+</div>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->

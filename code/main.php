@@ -4,8 +4,8 @@
 	include 'include/dbconnect.php';
 
 	//display last 10 sales
-	$pj_display_query = "SELECT id,name,starttime,endtime FROM project ORDER BY starttime";
-	$pj_display_query_result = $dbconn->query("$pj_display_query");
+	$latest_sales_query = "select CustomerSales_v.nameLast, CustomerSales_v.nameFirst, tbl_Product.name,CustomerSales_v.saleDate from CustomerSales_v inner join tbl_SaleProduct on CustomerSales_v.saleId = tbl_SaleProduct.saleId inner join tbl_Product on tbl_SaleProduct.productId = tbl_Product.productId order by CustomerSales_v.saleDate desc limit 10";
+	$latest_sales_query_result = $dbconn->query("$latest_sales_query");
 ?>
 <html>
 <head>
@@ -20,28 +20,23 @@
 <div class="container">
 <div class="col-md-10 col-md-offset-1 material-animated-card">
 <center>
-<h4>Last 10 Sales Summary:</h4>
+<h3>Last 10 Sales Summary:</h3>
 <table class="table">
-<tr><th>Customer</th><th>Product Name</th><th>Purchase Date</th></tr>
+<tr><th>Customer</th><th>Product Name</th><th>Purchase Date</th><th>Coupon Used?</th></tr>
 <?php
 	// test for an empty table  
-   $num_rows = mysqli_num_rows($pj_display_query_result);
+   $num_rows = mysqli_num_rows($latest_sales_query_result);
 	if($num_rows == 0) {
 		error_message("No Sales Found!");
 	} else {
-		while( $row = mysqli_fetch_array($pj_display_query_result) ) {
-			$pj_id = $row['id'];
-			$pj_name = $row['name'];
-            $pj_sdate = $row['starttime'];
-            $pj_edate = $row['endtime'];
+		while( $row = mysqli_fetch_array($latest_sales_query_result) ) {
+			$lname = $row['nameLast'];
+			$fname = $row['nameFirst'];
+            $productname = $row['name'];
+            $saledate = $row['saleDate'];
+			$couponused = ($row['couponId'] >= 1) ? "Yes": "No"; //just make it a boolean
 
-			//Convert dates to friendly format
-			$new_sdate = new DateTime($pj_sdate);
-        	$pj_sdate = $new_sdate->format('m/d/Y');
-        	$new_edate = new DateTime($pj_edate);
-        	$pj_edate = $new_edate->format('m/d/Y');
-
-			echo '<tr><td><a href="projectdetail.php?id=' . $pj_id . '">' . $pj_name . '</td><td>' . $pj_sdate . '</td><td>' . $pj_edate . '</td></tr>';
+			echo '<tr><td>' . $fname . ' ' . $lname . '</td><td>' . $productname . '</td><td>' . $saledate . '</td><td>' . $couponused . '</td></tr>';
 		}
 	}
 ?>

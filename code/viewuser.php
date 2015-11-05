@@ -7,15 +7,16 @@
 <head>
 <title>User Report</title>
     <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
 </head>
 <body>
-<br/>
-<br/>
+<div class="container">
+<div class="col-md-10 col-md-offset-1 material-animated-card">
 <center>
-<h2>Mama G's Current Users</h2>
+<h3>Mama G's Current Users</h3>
 <?php
 	$user_query = "SELECT nameFirst,nameLast,hireDate,logonName,admin FROM tbl_Employee";
 	$user_query_result = $dbconn->query("$user_query");
@@ -23,7 +24,7 @@
 	if( $num_rows == 0 ) {
 		error_message("Holy moly, no users in system!!");
 	} else {
-		echo '<table border="1" cellpadding="10">';
+		echo '<table class="table">';
 		echo '<tr><th>First Name</th><th>Last Name</th><th>Logon Username</th><th>Hire Date</th><th>Role</th></tr>';
 		while( $row = mysqli_fetch_array($user_query_result) ) {
 			$fname = $row['nameFirst'];
@@ -37,6 +38,8 @@
 	}
 ?>
 </center>
+</div>
+</div>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->

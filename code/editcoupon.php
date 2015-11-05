@@ -61,6 +61,7 @@
 <head>
 <title>Edit Existing Mama G's Coupon</title>
     <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
     <link href="css/signin.css" rel="stylesheet">
@@ -72,8 +73,10 @@
     </script>
 </head>
 <body>
+<div class="container">
+<div class="col-md-10 col-md-offset-1 material-animated-card">
 <center>
-<h2>Edit Existing Mama G's Coupon</h2></br>
+<h3>Edit Existing Mama G's Coupon</h3></br>
 <?php
    //query to fill the select dropdown
    $select_coupon_query = "SELECT * FROM tbl_Coupon";
@@ -108,18 +111,17 @@
 </select><br/><br/>
 </form>
 <form method="post">
-<table>
-<tr><td>Amount:</td></tr>
-<tr><td><input class="form-control" name="amount" type="text" id="amount" size="20" maxlength="20" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $amount .'"'; }?>/></td></tr>
-<tr><td>Start Date:</td></tr>
-<tr><td><input class="form-control" name="sdate" type="text" id="sdate" size="20" maxlength="20" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $startdate .'"'; }?>/></td><td><a href="#" onclick="cal1x.select(document.forms[1].sdate,'anchor_sdate','yyyy-MM-dd'); return false;" name="anchor_sdate" id="anchor_sdate">select</a></td></tr>
-<tr><td>End Date:</td></tr>
-<tr><td><input class="form-control" name="edate" type="text" id="edate" size="20" maxlength="20" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $enddate .'"'; }?>/></td><td><a href="#" onclick="cal1x.select(document.forms[1].edate,'anchor_edate','yyyy-MM-dd'); return false;" name="anchor_edate" id="anchor_edate">select</a></td></tr>
+<table class="table-condensed">
+<tr><th>Amount:</th><td><input class="form-control" name="amount" type="text" id="amount" size="8" maxlength="10" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $amount .'"'; }?>/></td></tr>
+<tr><th>Start Date:</th><td><input class="form-control" name="sdate" type="text" readonly id="sdate" size="9" maxlength="10" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $startdate .'"'; }?>/></td><td><a href="#" onclick="cal1x.select(document.forms[1].sdate,'anchor_sdate','yyyy-MM-dd'); return false;" name="anchor_sdate" id="anchor_sdate">select</a></td></tr>
+<tr><th>End Date:</th><td><input class="form-control" name="edate" type="text" readonly id="edate" size="9" maxlength="10" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $enddate .'"'; }?>/></td><td><a href="#" onclick="cal1x.select(document.forms[1].edate,'anchor_edate','yyyy-MM-dd'); return false;" name="anchor_edate" id="anchor_edate">select</a></td></tr>
 </table><br/>
 <input class="btn btn-primary" type="submit" name="editcoupon" value="Edit Coupon">
 <input class="btn btn-primary" type="reset" value="Clear Entry"><br/><br/>
 </form>
 </center>
+</div>
+</div>
 
 <!-- Bootstrap core JavaScript
     ================================================== -->
