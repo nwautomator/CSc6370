@@ -15,8 +15,6 @@
 		if( $dbconn->query("$delete_link_query") ) {
 			if( $dbconn->query("$delete_query") ) {
 				ok_message("Coupon deleted!");
-				//refresh the page
-				header("Location: delcoupon.php");
 			} else {
 				error_message("Something went wrong");
 			}

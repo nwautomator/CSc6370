@@ -1,6 +1,13 @@
 <?php
 	//this file has all the validation functions
 	//needed for various input.
+	function validate_discount($discount) {
+		if( preg_match("/^[0]+\.[0]+$/",$discount) ) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
 	function validate_name($name) {
 		// a name should begin with a capital
 		// letter and have no numbers or special
@@ -62,12 +69,12 @@
 	}
 	
 	function error_message($message) {
-		$message = "<br/><br/>" . $message . "<br/>";
+		$message = "<br/><br/><p style='color: red'>" . $message . "</p><br/>";
 		print $message;
 	}
 
 	function ok_message($message) {
-		$message = "<br/><br/>" . $message . "<br/>";
+		$message = "<br/><br/><p style='color: green'>" . $message . "</p><br/>";
 		print $message;
 		//TODO: fix the sleep function
 		//sleep(4);

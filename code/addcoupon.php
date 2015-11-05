@@ -22,6 +22,13 @@
 		$sdate = $_POST['sdate'];
 		$edate = $_POST['edate'];
 		//validation
+		if( !validate_discount($amount) ) {
+			error_message("Can't create zero value coupon!");
+			$valid_discount = 0;
+        } else {
+            $valid_discount = 1;
+        }   
+
         if( !validate_cost($amount) ) { 
             error_message("Amount can't be blank!");
             $valid_amount = 0;
@@ -43,7 +50,7 @@
             $valid_edate = 1;
         }   
 
-		if( $valid_amount && $valid_sdate && $valid_edate ) {
+		if( $valid_discount && $valid_amount && $valid_sdate && $valid_edate ) {
 			//add it!
 			$addcoupon_query = "INSERT INTO tbl_Coupon SET amount='$amount', startDate='$sdate', endDate='$edate'";
 			if( $dbconn->query("$addcoupon_query") ) {
@@ -56,8 +63,6 @@
 				$link_coupon_query = "INSERT INTO tbl_ProductCoupon SET productId='$selectproduct', couponId='$coupon_id'";
 				if( $dbconn->query("$link_coupon_query") ) {
 					ok_message("New Coupon Added!");
-					//refresh the page
-					header("Location: addcoupon.php");
 				} else {
 					error_message("Something went wrong");
 				}

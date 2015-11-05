@@ -23,8 +23,6 @@
 		$delete_query = "DELETE FROM tbl_Employee WHERE employeeId=$delete";
 		if( $dbconn->query("$delete_query") ) {
 			ok_message("User deleted!");
-			//refresh the page
-			header("Location: deluser.php");
 		} else {
 			error_message("Something went wrong");
 		}
