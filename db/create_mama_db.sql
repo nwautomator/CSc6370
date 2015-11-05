@@ -132,7 +132,7 @@ create or replace view mama.CustomerLastVisit_v as
          s.customerId,
          c.nameFirst,
          c.nameLast,
-         max(s.saleDate)
+         max(s.saleDate) as "lastseen"
     from mama.tbl_Sale s
     join mama.tbl_Customer c
       on c.customerId = s.customerId
