@@ -151,7 +151,7 @@ function activeClass($requestUri)
 								<li><a href="addcoupon.php">Add Coupon</a></li>
 								<li><a href="editcoupon.php">Edit Coupon</a></li>
 								<li><a href="delcoupon.php">Delete Coupon</a></li>
-								<li><a href="delcoupon.php">View Available Coupons</a></li>
+								<li><a href="viewcoupon.php">View Available Coupons</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
