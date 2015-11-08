@@ -8,7 +8,7 @@ This is the CSc4370/6370 Project 1 Git repository. The members of this project a
 * Seyana Luong (sluong4@student.gsu.edu)
 * Michael Woodie (mwoodie77@gmail.com)
 
-This repository contains our project documents, database schema and data seeding script, and website code.
+This repository contains our project documents, database schema and data seeding script, and website code. The repository is available at https://bitbucket.org/cfreas/csc4370.
 
 ### Requirements ###
 
