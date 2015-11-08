@@ -7,7 +7,6 @@
 
 	$frequent_buyer_query = "select tbl_Customer.nameFirst,tbl_Customer.nameLast, ProductSales_v.customerId,count(ProductSales_v.customerId) as purchasecount,ProductSales_v.saleDate from tbl_Customer inner join ProductSales_v on tbl_Customer.customerId=ProductSales_v.customerId group by ProductSales_v.customerId order by count(ProductSales_v.customerId) desc,ProductSales_v.saleDate desc";
 	$frequent_buyer_query_result = $dbconn->query("$frequent_buyer_query");
-
 ?>
 <html>
 <head>

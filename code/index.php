@@ -11,7 +11,7 @@
 		$password = htmlspecialchars($_POST['password']);
 
 		if( !login($username,$password) ) {
-			error_message("<h2>Invalid credentials. Try again.</h2>");
+			error_message("Invalid credentials. Try again.");
 			//setcookie('login',$username,time() - 3600);
 		} else {
 			//cookie lasts for 24 hours
