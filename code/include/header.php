@@ -54,10 +54,6 @@ function activeClass($requestUri)
 
 
 		
-<?php
-	if($role === 'Y')
-	{ 
-?>
 		
 			<div class="navbar navbar-inverse navbar-fixed-top">
 				<div class="container">
@@ -102,6 +98,9 @@ function activeClass($requestUri)
 								<li><a href="coupon_ratio_report.php">Coupon Ratio Report</a></li>
 							</ul>
 						</li>
+
+						<?php if($role === 'Y') { ?>
+
                         <li class="dropdown">
                                 <a href=# data-toggle="dropdown" class="dropdown-toggle">Users
                                 <b class="caret"></b></a> 
@@ -113,68 +112,15 @@ function activeClass($requestUri)
                                 <li><a href="viewuser.php">View Users</a></li>
                             </ul>
                         </li>
-						<li <?php activeClass('password') ?>><a href="password.php" >Change Password</a></li>
-						<li <?php activeClass('logout') ?>><a href="logout.php" >Logout</a></li>
-					</ul>
-					</div>
-				</div>
-			</div>
-			
-	<?php
-	}
-	 else{
-	
-	?>
-		
-			<div class="navbar navbar-inverse navbar-fixed-top">
-				<div class="container">
-					<div class="navbar-header">
-					  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					  </button>
-						<a class="navbar-brand">Mama G's User:</a>
-					</div>
-					<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li <?php activeClass('main') ?>><a href="main.php">Main Page</a></li>
-						<li class="dropdown">
-								<a href="salesreport.php">Sales Summary Report</a></li>
-						<li class="dropdown">
-								<a href=# data-toggle="dropdown" class="dropdown-toggle">Coupon Management
-								<b class="caret"></b></a> 
-							
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="addcoupon.php">Add Coupon</a></li>
-								<li><a href="editcoupon.php">Edit Coupon</a></li>
-								<li><a href="delcoupon.php">Delete Coupon</a></li>
-								<li><a href="viewcoupon.php">View Available Coupons</a></li>
-							</ul>
-						</li>
-						<li class="dropdown">
-								<a href=# data-toggle="dropdown" class="dropdown-toggle">Reports
-								<b class="caret"></b></a> 
-							
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="generate_sales_report.php">Generate Sales Report</a></li>
-								<li><a href="customer_absent_report.php">Customer Absent Report</a></li>
-								<li><a href="frequent_buyer_report.php">Frequent Buyer Report</a></li>
-								<li><a href="coupon_ratio_report.php">Coupon Ratio Report</a></li>
-							</ul>
-						</li>
-						<li <?php activeClass('password') ?>><a href="password.php" >Change Password</a></li>
-						<li <?php activeClass('logout') ?>><a href="logout.php" >Logout</a></li>
-					</ul>
-					</div>
-				</div>
-			</div>
-	<?php
-	}
-	?>
 
+						<?php } ?>
+
+						<li <?php activeClass('password') ?>><a href="password.php" >Change Password</a></li>
+						<li <?php activeClass('logout') ?>><a href="logout.php" >Logout</a></li>
+					</ul>
+					</div>
+				</div>
+			</div>
  
 </body>
 </html>
