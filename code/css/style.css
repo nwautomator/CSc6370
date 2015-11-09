@@ -182,14 +182,14 @@
 		============================================ */
 
 		@-webkit-keyframes material-fade-up {
-		    from {
-		    	top: 50px;
-		    	opacity: 0;
-		    }
-		    to {
-		    	top: 0px;
-		    	opacity: 1;
-		    }
+			from {
+				top: 50px;
+				opacity: 0;
+			}
+			to {
+				top: 0px;
+				opacity: 1;
+			}
 		}
 
 		.material-animated-card {
