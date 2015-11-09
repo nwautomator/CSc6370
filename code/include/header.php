@@ -62,13 +62,11 @@ function activeClass($requestUri)
 						</button>
 						<a style="color: #ccff99" class="navbar-brand">Mama G's Admin:</a>
 					</div>
-					<div class="collapse navbar-collapse">
+					<div class="collapse navbar-collapse navbar-right">
 					<ul class="nav navbar-nav">
 						<li <?php activeClass('main') ?>><a href="main.php">Main Page</a></li>
 						<li class="dropdown">
-								<a href="salesreport.php">Sales Summary Report</a></li>
-						<li class="dropdown">
-								<a href=# data-toggle="dropdown" class="dropdown-toggle">Coupon Management
+								<a href=# data-toggle="dropdown" class="dropdown-toggle">Coupons
 								<b class="caret"></b></a> 
 							
 							<ul class="dropdown-menu" role="menu">
@@ -83,6 +81,7 @@ function activeClass($requestUri)
 								<b class="caret"></b></a> 
 							
 							<ul class="dropdown-menu" role="menu">
+								<li><a href="salesreport.php">Sales Summary Report</a></li>
 								<li><a href="generate_sales_report.php">Generate Sales Report</a></li>
 								<li><a href="customer_absent_report.php">Customer Absent Report</a></li>
 								<li><a href="frequent_buyer_report.php">Frequent Buyer Report</a></li>

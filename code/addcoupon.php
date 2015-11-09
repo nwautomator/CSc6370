@@ -81,7 +81,6 @@
 	<link href="css/style.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/starter-template.css" rel="stylesheet">
-    <link href="css/signin.css" rel="stylesheet">
 	<!-- Script for choosing dates -->
 	<script src="js/CalendarPopup.js"></script>
 	<script language="JavaScript" id="jscal1x">
