@@ -50,25 +50,14 @@ function activeClass($requestUri)
 
 </head>
 <body>
-
-
-
 		
 		
 			<div class="navbar navbar-inverse navbar-fixed-top">
 				<div class="container">
 					<div class="navbar-header">
-					  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					  </button>
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="glyphicon glyphicon-th-list" style="color: white"></span>
+						</button>
 						<a style="color: #ccff99" class="navbar-brand">Mama G's Admin:</a>
 					</div>
 					<div class="collapse navbar-collapse">
