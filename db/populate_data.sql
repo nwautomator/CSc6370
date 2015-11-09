@@ -68,6 +68,18 @@ call mama.CustomerAdd( 'Ororo', 'Monroe', '777-777-9626', 'storm@xmen.com' );
 call mama.CustomerAdd( 'Anna', 'Marie', '888-888-9626', 'rogue@xmen.com' );
 call mama.CustomerAdd( 'Remy', 'LeBeau', '999-999-9626', 'gambit@xmen.com' );
 call mama.CustomerAdd( 'Logan', 'Howlett', '000-000-9626', 'wolverine@xmen.com' );
+call mama.CustomerAdd( 'Scott', 'Michael', '000-000-1111', '@theoffice.com' );
+call mama.CustomerAdd( 'Helpert', 'Jim', '000-000-2222', '@theoffice.com' );
+call mama.CustomerAdd( 'Shrute', 'Dwight', '000-000-3333', '@theoffice.com' );
+call mama.CustomerAdd( 'Beasley', 'Pam', '000-000-4444', '@theoffice.com' );
+call mama.CustomerAdd( 'Shrute', 'Angela', '000-000-5555', '@theoffice.com' );
+call mama.CustomerAdd( 'Santos', 'Oscar', '000-000-6666', '@theoffice.com' );
+call mama.CustomerAdd( 'Refridgeration', 'Vance', '000-000-6666', '@theoffice.com' );
+call mama.CustomerAdd( 'Dalton', 'Andy', '000-000-6666', '@theoffice.com' );
+call mama.CustomerAdd( 'Kapoor', 'Kelly', '000-000-6666', '@theoffice.com' );
+call mama.CustomerAdd( 'McGuire', 'Toby', '000-000-6666', '@theoffice.com' );
+call mama.CustomerAdd( 'Carell', 'Steve', '000-000-6666', '@theoffice.com' );
+call mama.CustomerAdd( 'Livingson', 'Jan', '000-000-6666', '@theoffice.com' );
 
 -- -----------------------------------------------------------------------------------*
 --  Create procedure to add employees to tbl_Employee.
@@ -200,72 +212,53 @@ delimiter ;
 -- -----------------------------------------------------------------------------------*
 --  Populate tbl_Sale and tbl_SaleProduct
 -- -----------------------------------------------------------------------------------*
-call mama.SaleAdd( 1,1, 60);
-call mama.SaleProductAdd( 1,8,1);
-call mama.SaleProductAdd( 1,5,3);
-call mama.SaleProductAdd( 1,2,2);
-call mama.SaleUpdateSaleTotal(1);
 
-call mama.SaleAdd( 1,2, 5);
-call mama.SaleProductAdd( 2,1,1);
-call mama.SaleProductAdd( 2,2,2);
-call mama.SaleProductAdd( 2,4,2);
-call mama.SaleUpdateSaleTotal(2);
+drop procedure if exists mama.populate;
+delimiter $$
+create procedure mama.populate()
 
-call mama.SaleAdd( 1,3, 94);
-call mama.SaleProductAdd( 3,6,1);
-call mama.SaleUpdateSaleTotal(3);
+  begin
+    declare i int default 1;
+    declare msaleId int;
+    declare mrand int;
+    declare mcashId int;
+    declare mcustId int;
 
-call mama.SaleAdd( 1,4, 7);
-call mama.SaleProductAdd( 4,8,1);
-call mama.SaleProductAdd( 4,10,2);
-call mama.SaleUpdateSaleTotal(4);
+    simple_loop: loop
 
-call mama.SaleAdd( 2,5, 14);
-call mama.SaleProductAdd( 5,8,1);
-call mama.SaleProductAdd( 5,10,2);
-call mama.SaleProductAdd( 5,11,1);
-call mama.SaleUpdateSaleTotal(5);
+      select employeeId
+        into mcashId
+        from mama.tbl_Employee
+    order by rand()
+       limit 1;
 
-call mama.SaleAdd( 2,6, 6);
-call mama.SaleProductAdd( 6,8,1);
-call mama.SaleProductAdd( 6,10,1);
-call mama.SaleProductAdd( 6,1,2);
-call mama.SaleProductAdd( 6,12,1);
-call mama.SaleProductAdd( 6,5,2);
-call mama.SaleUpdateSaleTotal(6);
+      select customerId
+        into mcustId
+        from mama.tbl_Customer
+    order by rand()
+       limit 1;
 
-call mama.SaleAdd( 3,1, 3);
-call mama.SaleProductAdd( 7,13,1);
-call mama.SaleProductAdd( 7,9,3);
-call mama.SaleProductAdd( 7,7,2);
-call mama.SaleUpdateSaleTotal(7);
+      call mama.saleAdd( mcashId, mcustId, ( ceil( rand() * 90)));
 
-call mama.SaleAdd( 5,2,14);
-call mama.SaleProductAdd( 8,20,1);
-call mama.SaleUpdateSaleTotal(8);
+      select last_insert_Id()
+        into msaleId;
 
-call mama.SaleAdd( 5,7, 67);
-call mama.SaleProductAdd( 9,20,1);
-call mama.SaleUpdateSaleTotal(9);
+      insert into mama.tbl_SaleProduct( saleId, productId, amount)
+      select msaleId, p.productId, ceil( rand() * 3)
+	    from mama.tbl_Product p
+	order by rand()
+	   limit 3;
+	   
+	   call mama.SaleUpdateSaleTotal( msaleId );
 
-call mama.SaleAdd( 5,8, 2);
-call mama.SaleProductAdd( 10,17,2);
-call mama.SaleProductAdd( 10,16,1);
-call mama.SaleProductAdd( 10,13,3);
-call mama.SaleUpdateSaleTotal(10);
+      set i=i+1;
 
-call mama.SaleAdd( 5,9, 22);
-call mama.SaleProductAdd( 11,18,2);
-call mama.SaleProductAdd( 11,6,1);
-call mama.SaleProductAdd( 11,2,3);
-call mama.SaleUpdateSaleTotal(11);
+      if i=100 then
+        leave simple_loop;
+      end if;
+  end loop simple_loop;
+end $$
 
-call mama.SaleAdd( 5,10, 4);
-call mama.SaleProductAdd( 12,8,1);
-call mama.SaleProductAdd( 12,6,1);
-call mama.SaleProductAdd( 12,2,3);
-call mama.SaleProductAdd( 12,16,3);
-call mama.SaleProductAdd( 12,7,1);
-call mama.SaleProductAdd( 12,3,1);
-call mama.SaleUpdateSaleTotal(12);
+delimiter ;
+
+call mama.populate;
