@@ -43,8 +43,10 @@ function activeClass($requestUri)
 	<script src="js/jquery-1.7.1.min.js"></script>
 
 	<style type="text/css">
-		body > .container {
-			padding-top: 50px;
+		body {
+			padding-top: 40px;
+			padding-bottom: 40px;
+			background-color: #eee !important;
 		}
 	</style>
 
