@@ -262,3 +262,121 @@ end $$
 delimiter ;
 
 call mama.populate;
+
+-- -----------------------------------------------------------------------------------*
+--  Create procedure to add coupons to tbl_Coupon.
+-- -----------------------------------------------------------------------------------*
+drop procedure if exists mama.CouponAdd;
+delimiter $$
+create procedure mama.CouponAdd(
+  in name_in            varchar (30),
+  in amount_in          decimal (9,2),
+  in firstday_in        date,
+  in lastday_in         date
+  )
+begin
+	
+  insert into mama.tbl_Coupon( name, amount, startDate, endDate )
+       values ( name_in, amount_in, firstday_in, lastday_in);
+end$$
+delimiter ;
+
+call mama.CouponAdd( 'Save on Miller Lite', 2.50, curdate() - interval 10 day, curdate() + interval 30 day);
+call mama.CouponAdd( 'Sunbeam Loaves', .30, curdate() - interval 20 day, curdate() - interval 5 day);
+call mama.CouponAdd( 'Sunchips', .50, curdate() - interval 30 day, curdate() - interval 5 day);
+call mama.CouponAdd( 'Skittles - save a dollar', 1.00, curdate() - interval 30 day, curdate() + interval 30 day);
+call mama.CouponAdd( 'Colgate', .50, curdate() - interval 2 day, curdate() + interval 30 day);
+
+-- -----------------------------------------------------------------------------------*
+--  Create procedure to add coupons to products in tbl_ProductCoupon.
+-- -----------------------------------------------------------------------------------*
+drop procedure if exists mama.ProductCouponAdd;
+delimiter $$
+create procedure mama.ProductCouponAdd(
+  in couponId_in    int (30),
+  in productId_in   int (30)
+  )
+  begin
+  	
+	 insert into mama.tbl_ProductCoupon( couponId, productId )
+	      values ( couponId_in, productId_in );
+  end$$
+  delimiter ;
+  
+call mama.ProductCouponAdd( 1,1);
+call mama.ProductCouponAdd( 2,2);
+call mama.ProductCouponAdd( 3,3);
+call mama.ProductCouponAdd( 4,4);
+call mama.ProductCouponAdd( 5,9);
+
+drop procedure if exists mama.UpdateWithCoupon;
+delimiter $$
+create procedure mama.UpdateWithCoupon()
+  begin
+  	
+	declare msaleId int;
+	
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 1
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 1
+	 where s.saleId = msaleId
+	   and s.productId = 1;
+	 
+	 select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 2
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 2
+	 where s.saleId = msaleId
+	   and s.productId = 2;
+	   
+	 select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 3
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 3
+	 where s.saleId = msaleId
+	   and s.productId = 3;
+	   
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 4
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 4
+	 where s.saleId = msaleId
+	   and s.productId = 4;
+	   
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 9
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 5
+	 where s.saleId = msaleId
+	   and s.productId = 9;
+  end$$
+  delimiter ;
+  
+call mama.UpdateWithCoupon;
+	   

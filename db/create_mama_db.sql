@@ -23,6 +23,7 @@ create table mama.tbl_Category_lu(
 create table mama.tbl_Coupon(
   couponId           int       (9)  auto_increment   not null,
   amount             decimal (9,2)                   not null,
+  name               varchar  (30)                   not null,
   startDate          date                            not null,
   endDate            date                            not null,
   primary key (couponId)
@@ -228,6 +229,7 @@ alter table mama.tbl_SaleProduct
   add index idx_tbl_SaleProduct_ProductId (productId);
 
 -- *****CREATE FK CONSTRAINTS*****--
+
 -- -----------------------------------------------------------------------------------*
 --  Product - FK
 -- -----------------------------------------------------------------------------------*
