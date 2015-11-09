@@ -62,7 +62,7 @@ function activeClass($requestUri)
 						</button>
 						<a style="color: #ccff99" class="navbar-brand">Mama G's Admin:</a>
 					</div>
-					<div class="collapse navbar-collapse navbar-right">
+					<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li <?php activeClass('main') ?>><a href="main.php">Main Page</a></li>
 						<li class="dropdown">

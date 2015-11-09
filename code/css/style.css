@@ -263,4 +263,10 @@
 				overflow: hidden!important;
 			}
 		}
+
+		@media (min-width: 1000px) {
+			.navbar-nav {
+				float: right; !important;
+			}
+		}
 		
