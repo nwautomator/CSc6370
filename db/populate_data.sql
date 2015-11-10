@@ -104,11 +104,11 @@ end$$
 
 delimiter ;
 
-call mama.EmployeeAdd( 'mwoodie', '5f4dcc3b5aa765d61d8327deb882cf99', 'Michael', 'Woodie', 'Y');
-call mama.EmployeeAdd( 'cfreas', '5f4dcc3b5aa765d61d8327deb882cf99', 'Chris', 'Freas', 'Y');
-call mama.EmployeeAdd( 'blai', '5f4dcc3b5aa765d61d8327deb882cf99', 'Brandon', 'Lai', 'Y');
-call mama.EmployeeAdd( 'ggerst', '5f4dcc3b5aa765d61d8327deb882cf99', 'Rett', 'Gerst', 'Y');
-call mama.EmployeeAdd( 'sluong', '5f4dcc3b5aa765d61d8327deb882cf99', 'Seyana', 'Luong', 'Y');
+call mama.EmployeeAdd( 'mwoodie', '5f4dcc3b5aa765d61d8327deb882cf99', 'Michael', 'Woodie', 'Y', curdate());
+call mama.EmployeeAdd( 'cfreas', '5f4dcc3b5aa765d61d8327deb882cf99', 'Chris', 'Freas', 'Y', curdate());
+call mama.EmployeeAdd( 'blai', '5f4dcc3b5aa765d61d8327deb882cf99', 'Brandon', 'Lai', 'Y', curdate());
+call mama.EmployeeAdd( 'ggerst', '5f4dcc3b5aa765d61d8327deb882cf99', 'Rett', 'Gerst', 'Y', curdate());
+call mama.EmployeeAdd( 'sluong', '5f4dcc3b5aa765d61d8327deb882cf99', 'Seyana', 'Luong', 'Y', curdate());
 
 -- -----------------------------------------------------------------------------------*
 --  Create procedure to add products to tbl_Product.
