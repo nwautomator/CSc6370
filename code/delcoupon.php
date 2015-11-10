@@ -62,7 +62,7 @@
 <input class="btn btn-primary" type="submit" value="Delete Coupon">
 </form>
 <br/>
-<p style="color: red">Note: Deleting a coupon is permanant!</p>
+<p style="color: red">Note: Deleting a coupon is permanent!</p>
 </center>
 </div>
 </div>

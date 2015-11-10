@@ -56,7 +56,7 @@
 <input class="btn btn-primary" type="submit" value="Delete User">
 </form>
 <p style="font-weight: bold; text-align: center">
-Note: Deleting a user is permanant!
+Note: Deleting a user is permanent!
 </p>
 </center>
 
