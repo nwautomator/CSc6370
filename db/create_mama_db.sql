@@ -132,13 +132,17 @@ create or replace view mama.CustomerLastVisit_v as
   select s.customerId,
          c.nameFirst,
          c.nameLast,
+         c.phoneNumber,
+         c.email
          max(s.saleDate) as "lastseen"
     from mama.tbl_Sale s
     join mama.tbl_Customer c
       on c.customerId = s.customerId
 group by s.customerId,
          c.nameFirst,
-         c.nameLast;
+         c.nameLast,
+         c.phoneNumber,
+         c.email;
 
 -- -----------------------------------------------------------------------------------*
 --  ProductPurchaseTotals_v
