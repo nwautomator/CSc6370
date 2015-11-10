@@ -133,7 +133,7 @@ create or replace view mama.CustomerLastVisit_v as
          c.nameFirst,
          c.nameLast,
          c.phoneNumber,
-         c.email
+         c.email,
          max(s.saleDate) as "lastseen"
     from mama.tbl_Sale s
     join mama.tbl_Customer c
