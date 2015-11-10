@@ -52,7 +52,7 @@
 
 		if( $valid_discount && $valid_amount && $valid_sdate && $valid_edate ) {
 			//add it!
-			$addcoupon_query = "INSERT INTO tbl_Coupon SET amount='$amount', startDate='$sdate', endDate='$edate'";
+			$addcoupon_query = "call couponAdd( 'new', '$amount', '$sdate', '$edate' )";
 			if( $dbconn->query("$addcoupon_query") ) {
 				//Now, link the coupon the the product in the tbl_ProductCoupon table
 				$addcoupon_id_query = "SELECT LAST_INSERT_ID()";
@@ -60,7 +60,7 @@
 				while( $row = mysqli_fetch_array($addcoupon_id_query_result) ) {
 					$coupon_id = $row['LAST_INSERT_ID()'];
 				}
-				$link_coupon_query = "INSERT INTO tbl_ProductCoupon SET productId='$selectproduct', couponId='$coupon_id'";
+				$link_coupon_query = "call productCouponAdd( '$selectproduct', '$coupon_id')";
 				if( $dbconn->query("$link_coupon_query") ) {
 					ok_message("New Coupon Added!");
 				} else {
