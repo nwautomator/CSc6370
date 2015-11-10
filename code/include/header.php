@@ -18,6 +18,8 @@
 		$role = $row['admin'];
 	}
 
+    $level = ($role == 'Y')? "Admin": "User";
+
 //Function to change menu button clicked to active
 function activeClass($requestUri)
 {
@@ -60,7 +62,7 @@ function activeClass($requestUri)
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 							<span class="glyphicon glyphicon-th-list" style="color: white"></span>
 						</button>
-						<a style="color: #ccff99" class="navbar-brand">Mama G's Admin:</a>
+						<a style="color: #ccff99" class="navbar-brand">Mama G's <?php echo $level;?>:</a>
 					</div>
 					<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
@@ -89,8 +91,8 @@ function activeClass($requestUri)
 							</ul>
 						</li>
 
-						<?php if($role === 'Y') { ?>
-
+						<?php if($role === 'Y') { 
+                        echo '
                         <li class="dropdown">
                                 <a href=# data-toggle="dropdown" class="dropdown-toggle">Users
                                 <b class="caret"></b></a> 
@@ -102,8 +104,8 @@ function activeClass($requestUri)
                                 <li><a href="viewuser.php">View Users</a></li>
                             </ul>
                         </li>
-
-						<?php } ?>
+                        ';
+						} ?>
 
 						<li <?php activeClass('password') ?>><a href="password.php" >Change Password</a></li>
 						<li <?php activeClass('logout') ?>><a href="logout.php" >Logout</a></li>
