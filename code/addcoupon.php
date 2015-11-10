@@ -18,6 +18,7 @@
 		$selectproduct = $_COOKIE['selectproduct'];
 
 		//get values from the form
+                $name = $_POST['name'];
 		$amount = $_POST['amount'];
 		$sdate = $_POST['sdate'];
 		$edate = $_POST['edate'];
@@ -29,6 +30,13 @@
             $valid_discount = 1;
         }   
 
+        if( !validate_name(str_replace(' ','',$name)) ) { 
+            error_message("Name can't be blank!");
+            $valid_name = 0;
+        } else {
+            $valid_name = 1;
+        } 
+  
         if( !validate_cost($amount) ) { 
             error_message("Amount can't be blank!");
             $valid_amount = 0;
@@ -50,9 +58,9 @@
             $valid_edate = 1;
         }   
 
-		if( $valid_discount && $valid_amount && $valid_sdate && $valid_edate ) {
+		if( $valid_name && $valid_discount && $valid_amount && $valid_sdate && $valid_edate ) {
 			//add it!
-			$addcoupon_query = "call couponAdd( 'new', '$amount', '$sdate', '$edate' )";
+			$addcoupon_query = "call couponAdd( '$name', '$amount', '$sdate', '$edate' )";
 			if( $dbconn->query("$addcoupon_query") ) {
 				//Now, link the coupon the the product in the tbl_ProductCoupon table
 				$addcoupon_id_query = "SELECT LAST_INSERT_ID()";
@@ -113,6 +121,7 @@
 </form>
 <form method="post">
 <table class="table-condensed">
+<tr><th>Name:</th><td><input class="form-control" name="name" type="text" id="name" size="15" maxlength="30"/></td></tr>
 <tr><th>Amount:</th><td><input class="form-control" name="amount" type="text" id="amount" size="8" maxlength="10"/></td></tr>
 <tr><th>Start Date:</th><td><input class="form-control" name="sdate" type="text" readonly id="sdate" size="9" maxlength="10"/></td><td><a href="#" onclick="cal1x.select(document.forms[1].sdate,'anchor_sdate','yyyy-MM-dd'); return false;" name="anchor_sdate" id="anchor_sdate">select</a></td></tr>
 <tr><th>End Date:</th><td><input class="form-control" name="edate" type="text" readonly id="edate" size="9" maxlength="10"/></td><td><a href="#" onclick="cal1x.select(document.forms[1].edate,'anchor_edate','yyyy-MM-dd'); return false;" name="anchor_edate" id="anchor_edate">select</a></td></tr>

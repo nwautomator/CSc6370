@@ -92,12 +92,13 @@ create procedure mama.EmployeeAdd(
   in password_in     varchar (255),
   in nameFirst_in    varchar (30),
   in nameLast_in     varchar (30),
-  in admin_in        varchar (1)
+  in admin_in        varchar (1),
+  in hireDate_in     date
   )
 begin
 
   insert into mama.tbl_Employee( logonName, password, nameFirst, nameLast, hireDate, admin )
-       values ( logonName_in, password_in, nameFirst_in, nameLast_in, curdate(), admin_in );
+       values ( logonName_in, password_in, nameFirst_in, nameLast_in, hireDate_in, admin_in );
 
 end$$
 

@@ -57,7 +57,7 @@
 				//hash the password
 				$password = md5($password); 
 				$admin = $_POST['role'];
-				$add_query = "call employeeAdd('$username', '$password', '$firstname', '$lastname', '$admin')";
+				$add_query = "call employeeAdd('$username', '$password', '$firstname', '$lastname', '$admin', '$hiredate')";
 
 				//run the query and report the result.
 				if( $dbconn->query("$add_query") ) {
