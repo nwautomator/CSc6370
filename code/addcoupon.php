@@ -60,7 +60,7 @@
 				while( $row = mysqli_fetch_array($addcoupon_id_query_result) ) {
 					$coupon_id = $row['LAST_INSERT_ID()'];
 				}
-				$link_coupon_query = "call productCouponAdd( '$selectproduct', '$coupon_id')";
+				$link_coupon_query = "call productCouponAdd( '$coupon_id', '$selectproduct' )";
 				if( $dbconn->query("$link_coupon_query") ) {
 					ok_message("New Coupon Added!");
 				} else {

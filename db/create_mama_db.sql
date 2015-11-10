@@ -129,16 +129,14 @@ create or replace view mama.CustomerSales_v as
 --  CustomerLastVisit_v
 -- -----------------------------------------------------------------------------------*
 create or replace view mama.CustomerLastVisit_v as
-  select s.saleId,
-         s.customerId,
+  select s.customerId,
          c.nameFirst,
          c.nameLast,
          max(s.saleDate) as "lastseen"
     from mama.tbl_Sale s
     join mama.tbl_Customer c
       on c.customerId = s.customerId
-group by s.saleId,
-         s.customerId,
+group by s.customerId,
          c.nameFirst,
          c.nameLast;
 

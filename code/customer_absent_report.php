@@ -6,7 +6,7 @@
 	$today_long = date("l, F j Y");
 	$today_short = date("Y-m-d");
 
-	$absent_query = "SELECT CustomerLastVisit_v.nameFirst,CustomerLastVisit_v.nameLast,CustomerLastVisit_v.lastseen, tbl_Customer.phoneNumber,tbl_Customer.email FROM CustomerLastVisit_v INNER JOIN tbl_Customer ON CustomerLastVisit_v.customerId=tbl_Customer.customerId ORDER BY CustomerLastVisit_v.lastseen ASC";
+	$absent_query = "SELECT nameFirst, nameLast, lastseen, phoneNumber, email FROM CustomerLastVisit_v ORDER BY lastseen ASC";
 	$absent_query_result = $dbconn->query("$absent_query");
 
 ?>
