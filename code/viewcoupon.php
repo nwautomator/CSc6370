@@ -25,10 +25,11 @@
 		error_message("No coupons have been created.");
 	} else {
 		echo '<table class="table">';
-		echo '<tr><th>Product</th><th>Retail Price</th><th>Coupon Amount</th><th>Start Date</th><th>End Date</th><th>Expired?</th></tr>';
+		echo '<tr><th>Product</th><th>Retail Price</th><th>Coupon Description</th><th>Coupon Amount</th><th>Start Date</th><th>End Date</th><th>Expired?</th></tr>';
 		while( $row = mysqli_fetch_array($coupon_query_result) ) {
 			$coupon_id = $row['couponId'];
 			$amount = $row['amount'];
+			$name = $row['name'];
 			$startdate = $row['startDate'];
 			$enddate = $row['endDate'];
 			$expired = ($enddate < $today) ? "<p style='color: red'>YES</p>": "<p style='color: green'>NO</p>";
@@ -44,7 +45,7 @@
 				while( $row = mysqli_fetch_array($product_query_result) ) {
 					$pname = $row['name'];
 					$pprice = $row['price'];
-					echo '<tr><td>' . $pname . '</td><td>$' . $pprice . '</td><td>$' . $amount . '</td><td>' . $startdate . '</td><td>' . $enddate . '</td><td>' . $expired . '</td></tr>';
+					echo '<tr><td>' . $pname . '</td><td>$' . $pprice . '</td><td>' . $name .'</td><td>$' . $amount . '</td><td>' . $startdate . '</td><td>' . $enddate . '</td><td>' . $expired . '</td></tr>';
 				}
 			}
 		}
