@@ -9,6 +9,7 @@
 		$select_coupon_query = "SELECT * FROM tbl_Coupon where couponId='$selectcoupon'";
 		$select_coupon_result = $dbconn->query("$select_coupon_query");
 		while( $row = mysqli_fetch_array($select_coupon_result) ) {
+			$couponname = $row['name'];
 			$couponamount = $row['amount'];
 			$sdate = $row['startDate'];
 			$edate = $row['endDate'];
@@ -24,18 +25,26 @@
     if ( isset($_POST['editcoupon']) ) {
 		$selectcoupon = $_COOKIE['editcoupon'];
         //get values from the form
+        $name = $_POST['name'];
         $amount = $_POST['amount'];
         $startdate = $_POST['sdate'];
         $enddate = $_POST['edate'];
 		//validate form and add to the DB
 		//if validation is successful
 
+       	if( !validate_text($name) ) {
+            error_message("Name can't be empty!");
+            $valid_name = 0;
+        } else {
+            $valid_name = 1;
+        }
+
        	if( !validate_discount($amount) ) {
             error_message("Can't create zero value coupon!");
             $valid_discount = 0;
         } else {
             $valid_discount = 1;
-		}
+        }
 
         if( !validate_cost($amount) ) { 
             error_message("Check entry for amount<br/>");
@@ -59,8 +68,8 @@
         }   
 
 		// we should be validated at this point
-		if($valid_discount && $valid_amount && $valid_startdate && $valid_enddate) {
-			$update_query = "UPDATE tbl_Coupon SET amount='$amount', startDate='$startdate',endDate='$enddate' WHERE couponId='$selectcoupon'";
+		if($valid_name && $valid_discount && $valid_amount && $valid_startdate && $valid_enddate) {
+			$update_query = "UPDATE tbl_Coupon SET name='$name', amount='$amount', startDate='$startdate',endDate='$enddate' WHERE couponId='$selectcoupon'";
 
 			//run the query and report the result.
 			if( $dbconn->query("$update_query") ) {
@@ -103,6 +112,7 @@
 <?php 
    while( $row = mysqli_fetch_array($select_coupon_result) ) { 
 	   $couponid = $row['couponId'];
+           $name = $row['name'];
 	   $amount = $row['amount'];
 	   $startdate = $row['startDate'];
 	   $enddate = $row['endDate'];
@@ -127,6 +137,7 @@
 </form>
 <form method="post">
 <table class="table-condensed">
+<tr><th>Name:</th><td><input class="form-control" name="name" type="text" id="name" size="8" maxlength="30" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $couponname .'"'; }?>/></td></tr>
 <tr><th>Amount:</th><td><input class="form-control" name="amount" type="text" id="amount" size="8" maxlength="10" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $couponamount .'"'; }?>/></td></tr>
 <tr><th>Start Date:</th><td><input class="form-control" name="sdate" type="text" readonly id="sdate" size="9" maxlength="10" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $sdate .'"'; }?>/></td><td><a href="#" onclick="cal1x.select(document.forms[1].sdate,'anchor_sdate','yyyy-MM-dd'); return false;" name="anchor_sdate" id="anchor_sdate">select</a></td></tr>
 <tr><th>End Date:</th><td><input class="form-control" name="edate" type="text" readonly id="edate" size="9" maxlength="10" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $edate .'"'; }?>/></td><td><a href="#" onclick="cal1x.select(document.forms[1].edate,'anchor_edate','yyyy-MM-dd'); return false;" name="anchor_edate" id="anchor_edate">select</a></td></tr>

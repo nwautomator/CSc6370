@@ -30,7 +30,7 @@
             $valid_discount = 1;
         }   
 
-        if( !validate_name(str_replace(' ','',$name)) ) { 
+        if( !validate_text($name) ) { 
             error_message("Name can't be blank!");
             $valid_name = 0;
         } else {
