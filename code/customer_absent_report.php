@@ -6,8 +6,15 @@
 	$today_long = date("l, F j Y");
 	$today_short = date("Y-m-d");
 
-	$absent_query = "SELECT nameFirst, nameLast, lastseen, phoneNumber, email FROM CustomerLastVisit_v ORDER BY lastseen ASC";
-	$absent_query_result = $dbconn->query("$absent_query");
+    if( isset($_POST['absentrange']) ) {
+        $absentrange = $_POST['absentrange'];
+	    $absent_query = "SELECT nameFirst, nameLast, lastseen, phoneNumber, email FROM CustomerLastVisit_v WHERE lastseen <= curdate() - interval $absentrange day ORDER BY lastseen ASC";
+	    $absent_query_result = $dbconn->query("$absent_query");
+    } else {
+        $absentrange = 90;
+	    $absent_query = "SELECT nameFirst, nameLast, lastseen, phoneNumber, email FROM CustomerLastVisit_v WHERE lastseen <= curdate() - interval 90 day ORDER BY lastseen ASC";
+	    $absent_query_result = $dbconn->query("$absent_query");
+    }
 
 ?>
 <html>
@@ -23,6 +30,18 @@
 <div class="col-md-10 col-md-offset-1 material-animated-card">
 <center>
 <h3>Customer Absent Report For <?php echo $today_long; ?></h3>
+<form method="post" name="absentrange">
+<select name="absentrange" onChange="this.form.submit()">
+<option value="00">Select Range</option></br>
+<option value="7">7 days</option></br>
+<option value="14">14 days</option></br>
+<option value="30">30 days</option></br>
+<option value="45">45 days</option></br>
+<option value="60">60 days</option></br>
+<option value="90">90 days</option></br>
+</select><br/><br/>
+</form>
+<h4>Customers last seen more than <?php echo $absentrange; ?> day(s) ago</h4>
 <?php
 	$num_rows = mysqli_num_rows($absent_query_result);
 	if( $num_rows == 0 ) {
