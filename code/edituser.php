@@ -157,7 +157,7 @@
 Guidelines:<br/>
 * First name must begin with a capital letter and be alphanumeric only<br/>
 * Last name must begin with a capital letter and be alphanumeric only<br/>
-* Email address can be in the form bob@company.com or bob.smith@company.com<br/>
+* Logon username should be the first letter of the first name and last name (e.g. bsmith for user Bob Smith)<br/>
 * Passwords must be at least 8 characters and must contain at least one
 uppercase character, one lowercase character, and one number<br/><br/><br/>
 </p>
