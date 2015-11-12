@@ -3,18 +3,23 @@
 	include 'include/validate.php';
 
    //query to fill the select dropdown
-   $select_coupon_query = "SELECT couponId, amount, startDate, endDate FROM tbl_Coupon where active = 'Y'";
+   $select_coupon_query = "SELECT * FROM tbl_Coupon";
    $select_coupon_result = $dbconn->query("$select_coupon_query");
 
     // the conditional below validates that the form
     // was really submitted.
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$delete = $_POST['deletecoupon'];
-		$delete_query = "UPDATE tbl_Coupon SET active = 'N' where couponId=$delete";
-		if( $dbconn->query("$delete_query") ) {
-			ok_message("Coupon deleted!");
+		$delete_query = "DELETE FROM tbl_Coupon WHERE couponId=$delete";
+		$delete_link_query = "DELETE FROM tbl_ProductCoupon WHERE couponId=$delete";
+		if( $dbconn->query("$delete_link_query") ) {
+			if( $dbconn->query("$delete_query") ) {
+				ok_message("Coupon deleted!");
+			} else {
+				error_message("Something went wrong");
+			}
 		} else {
-			error_message("Something went wrong 1");
+			error_message("Something went wrong");
 		}
 	}
 ?>

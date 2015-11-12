@@ -26,7 +26,6 @@ create table mama.tbl_Coupon(
   name               varchar  (30)                   not null,
   startDate          date                            not null,
   endDate            date                            not null,
-  active             varchar   (1)                   not null,
   primary key (couponId)
   )
   engine = InnoDB row_format = default;

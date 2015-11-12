@@ -277,8 +277,8 @@ create procedure mama.CouponAdd(
   )
 begin
 	
-  insert into mama.tbl_Coupon( name, amount, startDate, endDate, active )
-       values ( name_in, amount_in, firstday_in, lastday_in, 'Y');
+  insert into mama.tbl_Coupon( name, amount, startDate, endDate )
+       values ( name_in, amount_in, firstday_in, lastday_in);
 end$$
 delimiter ;
 
