@@ -18,7 +18,7 @@
 <center>
 <h3>Mama G's Available Coupons</h3>
 <?php
-	$coupon_query = "SELECT * FROM tbl_Coupon";
+	$coupon_query = "SELECT * FROM tbl_Coupon where active = 'Y'";
 	$coupon_query_result = $dbconn->query("$coupon_query");
    	$num_rows = mysqli_num_rows($coupon_query_result);
 	if( $num_rows == 0 ) {

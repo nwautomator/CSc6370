@@ -103,7 +103,7 @@
 <h3>Edit Existing Mama G's Coupon</h3></br>
 <?php
    //query to fill the select dropdown
-   $select_coupon_query = "SELECT * FROM tbl_Coupon";
+   $select_coupon_query = "SELECT * FROM tbl_Coupon where active = 'Y'";
    $select_coupon_result = $dbconn->query("$select_coupon_query");
 ?>
 <form method="post" name="selectcoupon">
