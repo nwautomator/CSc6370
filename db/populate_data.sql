@@ -329,6 +329,42 @@ create procedure mama.UpdateWithCoupon()
 	 where s.saleId = msaleId
 	   and s.productId = 1;
 	 
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 1
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 1
+	 where s.saleId = msaleId
+	   and s.productId = 1;
+	 
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 1
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 1
+	 where s.saleId = msaleId
+	   and s.productId = 1;
+	 
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 1
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 1
+	 where s.saleId = msaleId
+	   and s.productId = 1;
+	 
 	 select saleId
 	  into msaleId
 	  from mama.tbl_SaleProduct
@@ -365,6 +401,54 @@ create procedure mama.UpdateWithCoupon()
 	 where s.saleId = msaleId
 	   and s.productId = 4;
 	   
+		select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 4
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 4
+	 where s.saleId = msaleId
+	   and s.productId = 4;
+	
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 4
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 4
+	 where s.saleId = msaleId
+	   and s.productId = 4;	
+	 
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 4
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 4
+	 where s.saleId = msaleId
+	   and s.productId = 4;	
+	 
+    select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 4
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 4
+	 where s.saleId = msaleId
+	   and s.productId = 4;   
+	   
 	select saleId
 	  into msaleId
 	  from mama.tbl_SaleProduct
@@ -376,6 +460,31 @@ create procedure mama.UpdateWithCoupon()
 	   set s.couponId = 5
 	 where s.saleId = msaleId
 	   and s.productId = 9;
+
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 9
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 5
+	 where s.saleId = msaleId
+	   and s.productId = 9;
+
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 9
+  order by rand()
+     limit 1;
+	 
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 5
+	 where s.saleId = msaleId
+	   and s.productId = 9;
+
   end$$
   delimiter ;
   

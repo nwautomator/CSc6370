@@ -6,17 +6,8 @@
 	$product_query = "SELECT productId,name,price from tbl_Product WHERE inventoryAmount > 0";
 	$product_query_result = $dbconn->query("$product_query");
 
-    if (isset($_POST['selectproduct'])) {
-		$selectproduct = $_POST['selectproduct'];
-        //can't figure out a better way to pass the selected
-        //product to the coupon form, so set a cookie! Lame hack.
-        setcookie('selectproduct',$selectproduct,time() + 3600);
-	}
-    // the conditional below validates that the form
-    // was really submitted.
     if (isset($_POST['addcoupon'])) {
-		$selectproduct = $_COOKIE['selectproduct'];
-
+		$selectproduct = $_POST['selectproduct'];
 		//get values from the form
                 $name = $_POST['name'];
 		$amount = $_POST['amount'];
@@ -102,8 +93,9 @@
 <center>
 <h3>Add a new Coupon</h3>
 
-<form method="post" name="selectproduct">
-<select name="selectproduct" onChange="this.form.submit()">
+<form method="post">
+<table class="table-condensed">
+<select name="selectproduct">
 <option value="00">Select Product</option></br>
 <?php 
     while( $row = mysqli_fetch_array($product_query_result) ) { 
@@ -118,13 +110,10 @@
     }   
 ?>
 </select><br/><br/>
-</form>
-<form method="post">
-<table class="table-condensed">
 <tr><th>Name:</th><td><input class="form-control" name="name" type="text" id="name" size="15" maxlength="30"/></td></tr>
 <tr><th>Amount:</th><td><input class="form-control" name="amount" type="text" id="amount" size="8" maxlength="10"/></td></tr>
-<tr><th>Start Date:</th><td><input class="form-control" name="sdate" type="text" readonly id="sdate" size="9" maxlength="10"/></td><td><a href="#" onclick="cal1x.select(document.forms[1].sdate,'anchor_sdate','yyyy-MM-dd'); return false;" name="anchor_sdate" id="anchor_sdate">select</a></td></tr>
-<tr><th>End Date:</th><td><input class="form-control" name="edate" type="text" readonly id="edate" size="9" maxlength="10"/></td><td><a href="#" onclick="cal1x.select(document.forms[1].edate,'anchor_edate','yyyy-MM-dd'); return false;" name="anchor_edate" id="anchor_edate">select</a></td></tr>
+<tr><th>Start Date:</th><td><input class="form-control" name="sdate" type="text" readonly id="sdate" size="9" maxlength="10"/></td><td><a href="#" onclick="cal1x.select(document.forms[0].sdate,'anchor_sdate','yyyy-MM-dd'); return false;" name="anchor_sdate" id="anchor_sdate">select</a></td></tr>
+<tr><th>End Date:</th><td><input class="form-control" name="edate" type="text" readonly id="edate" size="9" maxlength="10"/></td><td><a href="#" onclick="cal1x.select(document.forms[0].edate,'anchor_edate','yyyy-MM-dd'); return false;" name="anchor_edate" id="anchor_edate">select</a></td></tr>
 </table><br/>
 <input class="btn btn-primary" type="submit" name="addcoupon" value="Add Coupon">
 <input class="btn btn-primary" type="reset" value="Clear Entry"><br/><br/>
