@@ -63,19 +63,19 @@
 			$addcoupon_query = "call couponAdd( '$name', '$amount', '$sdate', '$edate' )";
 			if( $dbconn->query("$addcoupon_query") ) {
 				//Now, link the coupon the the product in the tbl_ProductCoupon table
-				$addcoupon_id_query = "SELECT LAST_INSERT_ID()";
+				$addcoupon_id_query = "SELECT MAX(couponId) as lastcoupon from tbl_Coupon";
 				$addcoupon_id_query_result = $dbconn->query("$addcoupon_id_query");
 				while( $row = mysqli_fetch_array($addcoupon_id_query_result) ) {
-					$coupon_id = $row['LAST_INSERT_ID()'];
+					$coupon_id = $row['lastcoupon'];
 				}
 				$link_coupon_query = "call productCouponAdd( '$coupon_id', '$selectproduct' )";
 				if( $dbconn->query("$link_coupon_query") ) {
 					ok_message("New Coupon Added!");
 				} else {
-					error_message("Something went wrong");
+					error_message("Something went wrong, yo");
 				}
 			} else {
-				error_message("Something went wrong");
+				error_message("Something went wrong, homie");
 			}
 		} else {
 			error_message("Form failed validation. Try again.");
