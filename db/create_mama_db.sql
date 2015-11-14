@@ -1,16 +1,10 @@
 -- Create database Mama; schema and objects
 
--- *****CREATE SCHEMA*****--
-drop database if exists mama;
-create schema mama;
-grant all on mama.* to 'mama_tester'@'localhost' identified by 'test1234';
-grant all on mama.* to 'mama_tester'@'127.0.0.1' identified by 'test1234';
-
 -- *****CREATE TABLES*****--
 -- -----------------------------------------------------------------------------------*
 --  Category_lu - Table
 -- -----------------------------------------------------------------------------------*
-create table mama.tbl_Category_lu(
+create table f15g03db.tbl_Category_lu(
   categoryId         int       (9)  auto_increment   not null,
   name               varchar  (30)                   not null,
   primary key (categoryId)
@@ -20,7 +14,7 @@ create table mama.tbl_Category_lu(
 -- -----------------------------------------------------------------------------------*
 --  Coupon - Table
 -- -----------------------------------------------------------------------------------*
-create table mama.tbl_Coupon(
+create table f15g03db.tbl_Coupon(
   couponId           int       (9)  auto_increment   not null,
   amount             decimal (9,2)                   not null,
   name               varchar  (30)                   not null,
@@ -34,7 +28,7 @@ create table mama.tbl_Coupon(
 -- -----------------------------------------------------------------------------------*
 --  Customer - Table
 -- -----------------------------------------------------------------------------------*
-create table mama.tbl_Customer(
+create table f15g03db.tbl_Customer(
   customerId         int       (9)  auto_increment   not null,
   nameFirst          varchar  (30)                   not null,
   nameLast           varchar  (30)                   not null,
@@ -48,7 +42,7 @@ create table mama.tbl_Customer(
 -- -----------------------------------------------------------------------------------*
 --  Employee - Table
 -- -----------------------------------------------------------------------------------*
-create table mama.tbl_Employee(
+create table f15g03db.tbl_Employee(
   employeeId         int       (9)  auto_increment   not null,
   logonName          varchar  (15)                   not null,
   password           varchar  (255)                  not null,
@@ -65,7 +59,7 @@ create table mama.tbl_Employee(
 -- -----------------------------------------------------------------------------------*
 --  Product - Table
 -- -----------------------------------------------------------------------------------*
-create table mama.tbl_Product(
+create table f15g03db.tbl_Product(
   productId          int       (9)  auto_increment   not null,
   categoryId         int       (9)                   not null,
   name               varchar  (30)                   not null,
@@ -79,7 +73,7 @@ create table mama.tbl_Product(
 -- -----------------------------------------------------------------------------------*
 --  ProductCoupon - Table
 -- -----------------------------------------------------------------------------------*
-create table mama.tbl_ProductCoupon(
+create table f15g03db.tbl_ProductCoupon(
   productId          int       (9)                   not null,
   couponId           int       (9)                   not null,
   primary key (productId, couponId)
@@ -89,7 +83,7 @@ create table mama.tbl_ProductCoupon(
 -- -----------------------------------------------------------------------------------*
 --  Sale - Table
 -- -----------------------------------------------------------------------------------*
-create table mama.tbl_Sale(
+create table f15g03db.tbl_Sale(
   saleId             int       (9)  auto_increment   not null,
   cashierId          int       (9)                   not null,
   customerId         int       (9)                   not null,
@@ -102,7 +96,7 @@ create table mama.tbl_Sale(
 -- -----------------------------------------------------------------------------------*
 --  SaleProduct - Table
 -- -----------------------------------------------------------------------------------*
-create table mama.tbl_SaleProduct(
+create table f15g03db.tbl_SaleProduct(
   saleId             int       (9)                   not null,
   productId          int       (9)                   not null,
   couponId           int       (9),
@@ -115,29 +109,29 @@ create table mama.tbl_SaleProduct(
 -- -----------------------------------------------------------------------------------*
 --  CustomerSales_v
 -- -----------------------------------------------------------------------------------*
-create or replace view mama.CustomerSales_v as
+create or replace view f15g03db.CustomerSales_v as
   select s.saleId,
          s.saleTotal,
          s.saleDate,
          c.customerId,
          c.nameFirst,
          c.nameLast
-    from mama.tbl_Sale s
-    join mama.tbl_Customer c
+    from f15g03db.tbl_Sale s
+    join f15g03db.tbl_Customer c
       on c.customerId = s.customerId;
 	 
 -- -----------------------------------------------------------------------------------*
 --  CustomerLastVisit_v
 -- -----------------------------------------------------------------------------------*
-create or replace view mama.CustomerLastVisit_v as
+create or replace view f15g03db.CustomerLastVisit_v as
   select s.customerId,
          c.nameFirst,
          c.nameLast,
          c.phoneNumber,
          c.email,
          max(s.saleDate) as "lastseen"
-    from mama.tbl_Sale s
-    join mama.tbl_Customer c
+    from f15g03db.tbl_Sale s
+    join f15g03db.tbl_Customer c
       on c.customerId = s.customerId
 group by s.customerId,
          c.nameFirst,
@@ -148,12 +142,12 @@ group by s.customerId,
 -- -----------------------------------------------------------------------------------*
 --  ProductPurchaseTotals_v
 -- -----------------------------------------------------------------------------------*
-create or replace view mama.ProductPurchaseTotals_v as
+create or replace view f15g03db.ProductPurchaseTotals_v as
   select sp.productId,
          p.name,
          count(sp.productId)
-    from mama.tbl_SaleProduct sp
-    join mama.tbl_Product p
+    from f15g03db.tbl_SaleProduct sp
+    join f15g03db.tbl_Product p
       on p.productId = sp.productId
 group by sp.productId,
          p.name;
@@ -161,7 +155,7 @@ group by sp.productId,
 -- -----------------------------------------------------------------------------------*
 --  ProductSales_v
 -- -----------------------------------------------------------------------------------*
-create or replace view mama.ProductSales_v as
+create or replace view f15g03db.ProductSales_v as
   select sp.saleId,
          sp.productId,
          sp.amount,
@@ -170,65 +164,65 @@ create or replace view mama.ProductSales_v as
          s.saleDate,
          p.name,
          p.price
-    from mama.tbl_SaleProduct sp
-    join mama.tbl_Sale s
+    from f15g03db.tbl_SaleProduct sp
+    join f15g03db.tbl_Sale s
       on s.saleId = sp.saleId
-    join mama.tbl_Product p
+    join f15g03db.tbl_Product p
       on p.productId = sp.productId;
 
 -- *****CREATE INDEXES*****--
 -- -----------------------------------------------------------------------------------*
 --  Coupon - Index
 -- -----------------------------------------------------------------------------------*
-alter table mama.tbl_Coupon
+alter table f15g03db.tbl_Coupon
   add index idx_tbl_Coupon_CouponId (couponId);
 
 -- -----------------------------------------------------------------------------------*
 --  Customer - Index
 -- -----------------------------------------------------------------------------------*
-alter table mama.tbl_Customer
+alter table f15g03db.tbl_Customer
   add index idx_tbl_Customer_CustomerId (customerId);
 
 -- -----------------------------------------------------------------------------------*
 --  Employee - Index
 -- -----------------------------------------------------------------------------------*
-alter table mama.tbl_Employee
+alter table f15g03db.tbl_Employee
   add index idx_tbl_Employee_EmployeeId (employeeId);
 
 -- -----------------------------------------------------------------------------------*
 --  Product - Index
 -- -----------------------------------------------------------------------------------*
-alter table mama.tbl_Product
+alter table f15g03db.tbl_Product
   add index idx_tbl_Product_ProductId (productId);
 
 -- -----------------------------------------------------------------------------------*
 --  ProductCoupon - Index
 -- -----------------------------------------------------------------------------------*
-alter table mama.tbl_ProductCoupon
+alter table f15g03db.tbl_ProductCoupon
   add index idx_tbl_ProductCoupon_ProductId (productId);
 
-alter table mama.tbl_ProductCoupon
+alter table f15g03db.tbl_ProductCoupon
   add index idx_tbl_ProductCoupon_CouponId (couponId);
 
 -- -----------------------------------------------------------------------------------*
 --  Sale - Index
 -- -----------------------------------------------------------------------------------*
-alter table mama.tbl_Sale
+alter table f15g03db.tbl_Sale
   add index idx_tbl_Sale_SaleId (saleId);
 
-alter table mama.tbl_Sale
+alter table f15g03db.tbl_Sale
   add index idx_tbl_Sale_CashierId (cashierId);
 
-alter table mama.tbl_Sale
+alter table f15g03db.tbl_Sale
   add index idx_tbl_Sale_CustomerId (customerId);
 
 -- -----------------------------------------------------------------------------------*
 --  SaleProduct - Index
 -- -----------------------------------------------------------------------------------*
-alter table mama.tbl_SaleProduct
+alter table f15g03db.tbl_SaleProduct
   add index idx_tbl_SaleProduct_SaleId (saleId);
 
-alter table mama.tbl_SaleProduct
+alter table f15g03db.tbl_SaleProduct
   add index idx_tbl_SaleProduct_ProductId (productId);
 
 -- *****CREATE FK CONSTRAINTS*****--
@@ -236,67 +230,67 @@ alter table mama.tbl_SaleProduct
 -- -----------------------------------------------------------------------------------*
 --  Product - FK
 -- -----------------------------------------------------------------------------------*
-alter table mama.tbl_Product
+alter table f15g03db.tbl_Product
   add constraint fk_tbl_Product_CategoryId
   foreign key (categoryId)
-  references mama.tbl_Category_lu (categoryId)
+  references f15g03db.tbl_Category_lu (categoryId)
   on update restrict
   on delete restrict;
 
 -- -----------------------------------------------------------------------------------*
 --  ProductCoupon - FK
 -- -----------------------------------------------------------------------------------*
-alter table mama.tbl_ProductCoupon
+alter table f15g03db.tbl_ProductCoupon
   add constraint fk_tbl_ProductCoupon_ProductId
   foreign key (productId)
-  references mama.tbl_Product (productId)
+  references f15g03db.tbl_Product (productId)
   on update restrict
   on delete restrict;
 
-alter table mama.tbl_ProductCoupon
+alter table f15g03db.tbl_ProductCoupon
   add constraint fk_tbl_ProductCoupon_CouponId
   foreign key (couponId)
-  references mama.tbl_Coupon (couponId)
+  references f15g03db.tbl_Coupon (couponId)
   on update restrict
   on delete restrict;
 
 -- -----------------------------------------------------------------------------------*
 --  Sale - FK
 -- -----------------------------------------------------------------------------------*
-alter table mama.tbl_Sale
+alter table f15g03db.tbl_Sale
   add constraint fk_tbl_Sale_CustomerId
   foreign key (customerId)
-  references mama.tbl_Customer (customerId)
+  references f15g03db.tbl_Customer (customerId)
   on update restrict
   on delete restrict;
 
-alter table mama.tbl_Sale
+alter table f15g03db.tbl_Sale
   add constraint fk_tbl_Sale_CashierId
   foreign key (cashierId)
-  references mama.tbl_Employee (employeeId)
+  references f15g03db.tbl_Employee (employeeId)
   on update restrict
   on delete restrict;
 
 -- -----------------------------------------------------------------------------------*
 --  SaleProduct - FK
 -- -----------------------------------------------------------------------------------*
-alter table mama.tbl_SaleProduct
+alter table f15g03db.tbl_SaleProduct
   add constraint fk_tbl_SaleProduct_SaleId
   foreign key (saleId)
-  references mama.tbl_Sale (saleId)
+  references f15g03db.tbl_Sale (saleId)
   on update restrict
   on delete restrict;
 
-alter table mama.tbl_SaleProduct
+alter table f15g03db.tbl_SaleProduct
   add constraint fk_tbl_SaleProduct_ProductId
   foreign key (productId)
-  references mama.tbl_Product (productId)
+  references f15g03db.tbl_Product (productId)
   on update restrict
   on delete restrict;
 
-alter table mama.tbl_SaleProduct
+alter table f15g03db.tbl_SaleProduct
   add constraint fk_tbl_SaleProduct_ProductCouponId
   foreign key (productId, couponId)
-  references mama.tbl_ProductCoupon (productId, couponId)
+  references f15g03db.tbl_ProductCoupon (productId, couponId)
   on update restrict
   on delete restrict;
