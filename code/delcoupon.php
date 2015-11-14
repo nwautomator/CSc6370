@@ -29,6 +29,7 @@
 <body>
 <div class="container">
 <div class="col-md-10 col-md-offset-1 material-animated-card">
+<?php printmessages(); ?>
 <center>
 <h3>Delete A Mama G's Coupon</h3></br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="deletecoupon">

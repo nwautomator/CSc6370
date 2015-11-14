@@ -28,6 +28,7 @@
 <body>
 <div class="container">
 <div class="col-md-10 col-md-offset-1 material-animated-card">
+<?php printmessages(); ?>
 <center>
 <h3>Customer Absent Report For <?php echo $today_long; ?></h3>
 <form method="post" name="absentrange">
