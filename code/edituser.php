@@ -20,15 +20,12 @@
 			$logonName = $row['logonName'];
 			$user_role = $row['admin'];
 		}
-		//can't figure out a better way to pass the selected
-		//user to the edit code, so set a cookie! Lame hack.
-		setcookie('edituser',$selectuser,time() + 3600);
 	}
 
     // the conditional below validates that the form
     // was really submitted.
     if ( isset($_POST['edituser']) ) {
-		$selectuser = $_COOKIE['edituser'];
+		$selectuser = $_POST['selectuser'];
 		//validate form and add to the DB
 		//if validation is successful
         if( !validate_name(htmlspecialchars($_POST['firstname'])) ) { 
@@ -127,8 +124,6 @@
     }   
 ?>
 </select><br/><br/>
-</form>
-<form method="post">
 <table class="table-condensed">
 <tr><td>First name:</td><td><input class="form-control"  name="firstname" type="text" id="firstname" <?php if(isset($_POST['selectuser']) ) { echo 'value="' . $first .'"'; }?>/></td></tr>
 <tr><td>Last name:</td><td><input class="form-control"  name="lastname" type="text" id="lastname" <?php if(isset($_POST['selectuser']) ) { echo 'value="' . $last . '"';}?>/></td></tr>
