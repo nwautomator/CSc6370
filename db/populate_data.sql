@@ -403,60 +403,60 @@ create procedure f15g03db.UpdateWithCoupon()
 	   
 		select saleId
 	  into msaleId
-	  from mama.tbl_SaleProduct
+	  from f15g03db.tbl_SaleProduct
 	 where productId = 4
   order by rand()
      limit 1;
 	 
-	update mama.tbl_SaleProduct s
+	update f15g03db.tbl_SaleProduct s
 	   set s.couponId = 4
 	 where s.saleId = msaleId
 	   and s.productId = 4;
 	
 	select saleId
 	  into msaleId
-	  from mama.tbl_SaleProduct
+	  from f15g03db.tbl_SaleProduct
 	 where productId = 4
   order by rand()
      limit 1;
 	 
-	update mama.tbl_SaleProduct s
+	update f15g03db.tbl_SaleProduct s
 	   set s.couponId = 4
 	 where s.saleId = msaleId
 	   and s.productId = 4;	
 	 
 	select saleId
 	  into msaleId
-	  from mama.tbl_SaleProduct
+	  from f15g03db.tbl_SaleProduct
 	 where productId = 4
   order by rand()
      limit 1;
 	 
-	update mama.tbl_SaleProduct s
+	update f15g03db.tbl_SaleProduct s
 	   set s.couponId = 4
 	 where s.saleId = msaleId
 	   and s.productId = 4;	
 	 
     select saleId
 	  into msaleId
-	  from mama.tbl_SaleProduct
+	  from f15g03db.tbl_SaleProduct
 	 where productId = 4
   order by rand()
      limit 1;
 	 
-	update mama.tbl_SaleProduct s
+	update f15g03db.tbl_SaleProduct s
 	   set s.couponId = 4
 	 where s.saleId = msaleId
 	   and s.productId = 4;   
 	   
 	select saleId
 	  into msaleId
-	  from mama.tbl_SaleProduct
+	  from f15g03db.tbl_SaleProduct
 	 where productId = 9
   order by rand()
      limit 1;
 	 
-	update mama.tbl_SaleProduct s
+	update f15g03db.tbl_SaleProduct s
 	   set s.couponId = 5
 	 where s.saleId = msaleId
 	   and s.productId = 9;
@@ -475,12 +475,12 @@ create procedure f15g03db.UpdateWithCoupon()
 
 	select saleId
 	  into msaleId
-	  from mama.tbl_SaleProduct
+	  from f15g03db.tbl_SaleProduct
 	 where productId = 9
   order by rand()
      limit 1;
 	 
-	update mama.tbl_SaleProduct s
+	update f15g03db.tbl_SaleProduct s
 	   set s.couponId = 5
 	 where s.saleId = msaleId
 	   and s.productId = 9;
@@ -490,3 +490,6 @@ create procedure f15g03db.UpdateWithCoupon()
   
 call f15g03db.UpdateWithCoupon;
 	   
+
+grant all on f15g03db.* to 'mama_tester'@'localhost' identified by 'test1234';
+grant all on f15g03db.* to 'mama_tester'@'127.0.0.1' identified by 'test1234';

@@ -14,16 +14,12 @@
 			$sdate = $row['startDate'];
 			$edate = $row['endDate'];
 		}
-
-		//can't figure out a better way to pass the selected
-		//coupon to the edit code, so set a cookie! Lame hack.
-		setcookie('editcoupon',$selectcoupon,time() + 3600);
 	}
 
     // the conditional below validates that the form
     // was really submitted.
     if ( isset($_POST['editcoupon']) ) {
-		$selectcoupon = $_COOKIE['editcoupon'];
+		$selectcoupon = $_POST['selectcoupon'];
         //get values from the form
         $name = $_POST['name'];
         $amount = $_POST['amount'];
@@ -134,13 +130,11 @@
     }   
 ?>
 </select><br/><br/>
-</form>
-<form method="post">
 <table class="table-condensed">
 <tr><th>Name:</th><td><input class="form-control" name="name" type="text" id="name" size="8" maxlength="30" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $couponname .'"'; }?>/></td></tr>
 <tr><th>Amount:</th><td><input class="form-control" name="amount" type="text" id="amount" size="8" maxlength="10" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $couponamount .'"'; }?>/></td></tr>
-<tr><th>Start Date:</th><td><input class="form-control" name="sdate" type="text" readonly id="sdate" size="9" maxlength="10" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $sdate .'"'; }?>/></td><td><a href="#" onclick="cal1x.select(document.forms[1].sdate,'anchor_sdate','yyyy-MM-dd'); return false;" name="anchor_sdate" id="anchor_sdate">select</a></td></tr>
-<tr><th>End Date:</th><td><input class="form-control" name="edate" type="text" readonly id="edate" size="9" maxlength="10" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $edate .'"'; }?>/></td><td><a href="#" onclick="cal1x.select(document.forms[1].edate,'anchor_edate','yyyy-MM-dd'); return false;" name="anchor_edate" id="anchor_edate">select</a></td></tr>
+<tr><th>Start Date:</th><td><input class="form-control" name="sdate" type="text" readonly id="sdate" size="9" maxlength="10" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $sdate .'"'; }?>/></td><td><a href="#" onclick="cal1x.select(document.forms[0].sdate,'anchor_sdate','yyyy-MM-dd'); return false;" name="anchor_sdate" id="anchor_sdate">select</a></td></tr>
+<tr><th>End Date:</th><td><input class="form-control" name="edate" type="text" readonly id="edate" size="9" maxlength="10" <?php if(isset($_POST['selectcoupon']) ) { echo 'value="' . $edate .'"'; }?>/></td><td><a href="#" onclick="cal1x.select(document.forms[0].edate,'anchor_edate','yyyy-MM-dd'); return false;" name="anchor_edate" id="anchor_edate">select</a></td></tr>
 </table><br/>
 <input class="btn btn-primary" type="submit" name="editcoupon" value="Edit Coupon">
 <input class="btn btn-primary" type="reset" value="Clear Entry"><br/><br/>
