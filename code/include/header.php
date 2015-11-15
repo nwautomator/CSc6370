@@ -1,4 +1,5 @@
 <?php
+    ob_start(); // for servers that may not have output buffering turned on.
 	//place stuff in here that should be
 	//common to all pages.
 
