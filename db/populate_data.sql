@@ -316,44 +316,128 @@ create procedure f15g03db.UpdateWithCoupon()
   begin
   	
 	declare msaleId int;
-	
+
 	select saleId
 	  into msaleId
 	  from f15g03db.tbl_SaleProduct
 	 where productId = 1
   order by rand()
      limit 1;
-	 
+
 	update f15g03db.tbl_SaleProduct s
 	   set s.couponId = 1
 	 where s.saleId = msaleId
 	   and s.productId = 1;
-	 
+
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 1
+  order by rand()
+     limit 1;
+
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 1
+	 where s.saleId = msaleId
+	   and s.productId = 1;
+
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 1
+  order by rand()
+     limit 1;
+
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 1
+	 where s.saleId = msaleId
+	   and s.productId = 1;
+
+	select saleId
+	  into msaleId
+	  from mama.tbl_SaleProduct
+	 where productId = 1
+  order by rand()
+     limit 1;
+
+	update mama.tbl_SaleProduct s
+	   set s.couponId = 1
+	 where s.saleId = msaleId
+	   and s.productId = 1;
+
 	 select saleId
 	  into msaleId
 	  from f15g03db.tbl_SaleProduct
 	 where productId = 2
   order by rand()
      limit 1;
-	 
+
 	update f15g03db.tbl_SaleProduct s
 	   set s.couponId = 2
 	 where s.saleId = msaleId
 	   and s.productId = 2;
-	   
+
 	 select saleId
 	  into msaleId
 	  from f15g03db.tbl_SaleProduct
 	 where productId = 3
   order by rand()
      limit 1;
-	 
+
 	update f15g03db.tbl_SaleProduct s
 	   set s.couponId = 3
 	 where s.saleId = msaleId
 	   and s.productId = 3;
-	   
+
 	select saleId
+	  into msaleId
+	  from f15g03db.tbl_SaleProduct
+	 where productId = 4
+  order by rand()
+     limit 1;
+
+	update f15g03db.tbl_SaleProduct s
+	   set s.couponId = 4
+	 where s.saleId = msaleId
+	   and s.productId = 4;
+
+		select saleId
+	  into msaleId
+	  from f15g03db.tbl_SaleProduct
+	 where productId = 4
+  order by rand()
+     limit 1;
+
+	update f15g03db.tbl_SaleProduct s
+	   set s.couponId = 4
+	 where s.saleId = msaleId
+	   and s.productId = 4;
+
+	select saleId
+	  into msaleId
+	  from f15g03db.tbl_SaleProduct
+	 where productId = 4
+  order by rand()
+     limit 1;
+
+	update f15g03db.tbl_SaleProduct s
+	   set s.couponId = 4
+	 where s.saleId = msaleId
+	   and s.productId = 4;	
+
+	select saleId
+	  into msaleId
+	  from f15g03db.tbl_SaleProduct
+	 where productId = 4
+  order by rand()
+     limit 1;
+
+	update f15g03db.tbl_SaleProduct s
+	   set s.couponId = 4
+	 where s.saleId = msaleId
+	   and s.productId = 4;	
+	 
+    select saleId
 	  into msaleId
 	  from f15g03db.tbl_SaleProduct
 	 where productId = 4
@@ -363,7 +447,7 @@ create procedure f15g03db.UpdateWithCoupon()
 	update f15g03db.tbl_SaleProduct s
 	   set s.couponId = 4
 	 where s.saleId = msaleId
-	   and s.productId = 4;
+	   and s.productId = 4;   
 	   
 	select saleId
 	  into msaleId
@@ -376,8 +460,36 @@ create procedure f15g03db.UpdateWithCoupon()
 	   set s.couponId = 5
 	 where s.saleId = msaleId
 	   and s.productId = 9;
+
+	select saleId
+	  into msaleId
+	  from f15g03db.tbl_SaleProduct
+	 where productId = 9
+  order by rand()
+     limit 1;
+
+	update f15g03db.tbl_SaleProduct s
+	   set s.couponId = 5
+	 where s.saleId = msaleId
+	   and s.productId = 9;
+
+	select saleId
+	  into msaleId
+	  from f15g03db.tbl_SaleProduct
+	 where productId = 9
+  order by rand()
+     limit 1;
+
+	update f15g03db.tbl_SaleProduct s
+	   set s.couponId = 5
+	 where s.saleId = msaleId
+	   and s.productId = 9;
+
   end$$
   delimiter ;
-  
+
 call f15g03db.UpdateWithCoupon;
-	   
+
+
+grant all on f15g03db.* to 'mama_tester'@'localhost' identified by 'test1234';
+grant all on f15g03db.* to 'mama_tester'@'127.0.0.1' identified by 'test1234';
