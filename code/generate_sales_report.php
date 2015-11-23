@@ -27,6 +27,7 @@
 <body>
 <div class="container">
 <div class="col-md-10 col-md-offset-1 material-animated-card">
+<?php printmessages(); ?>
 <center>
 <h3>Sales Summary Report By Date:</h3>
 <form method="post">

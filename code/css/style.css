@@ -223,6 +223,10 @@
 			animation: material-fade-up .5s ease-out;
 		}
 
+		.material-animated-card .alert {
+			margin-top: 20px;
+		}
+
 /* 	Header fix - https://stackoverflow.com/a/20249415
 		============================================ */
 

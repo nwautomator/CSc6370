@@ -1,4 +1,9 @@
 <?php
+	global $errmessage;
+		$errmessage = array();
+	global $successmessage;
+		$successmessage = array();
+
 	//this file has all the validation functions
 	//needed for various input.
 	function validate_discount($discount) {
@@ -69,14 +74,26 @@
 	}
 	
 	function error_message($message) {
-		$message = "<br/><br/><p style='color: red'>" . $message . "</p><br/>";
-		print $message;
+		global $errmessage;
+		array_push($errmessage, "<div class=\"alert alert-danger\">" . $message . "</div>");
 	}
 
 	function ok_message($message) {
-		$message = "<br/><br/><p style='color: green'>" . $message . "</p><br/>";
-		print $message;
+		global $successmessage;
+		array_push($successmessage, "<div class=\"alert alert-success\">" . $message . "</div>");
 		//TODO: fix the sleep function
 		//sleep(4);
+	}
+
+	function printmessages() {
+		global $errmessage, $successmessage;
+		foreach ($errmessage as &$message) {
+			print $message;
+		} foreach ($successmessage as &$message) {
+			print $message;
+		}
+
+		$errmessage = null;
+		$selectmessage = null;
 	}
 ?>

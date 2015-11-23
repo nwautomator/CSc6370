@@ -88,6 +88,7 @@
 <body>
 <div class="container">
 <div class="col-md-10 col-md-offset-1 material-animated-card">
+<?php printmessages(); ?>
 <center>
 <h3>Add a new Mama G's user</h3></br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="login">

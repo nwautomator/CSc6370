@@ -33,8 +33,9 @@
 <body>
 <div class="container">
 <div class="col-md-4 col-md-offset-4 material-animated-card">
+<?php printmessages(); ?>
 <center>
-<h3>Login:</h3>
+<h3 style="margin-top: 0">Login:</h3>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" name="login">
 	<div class="form-group">
 		<label for="username">Username:</label>
